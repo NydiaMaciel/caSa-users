@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
             Container(
               height: MediaQuery.of(context).size.height*0.08,
               width: MediaQuery.of(context).size.width,
-              color: Color.fromARGB(255, 51, 184, 184),
+              color: Color.fromARGB(255, 135, 189, 174),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

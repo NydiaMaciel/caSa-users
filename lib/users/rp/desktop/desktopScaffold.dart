@@ -1,8 +1,7 @@
 import 'package:demo_casa_3/icons.dart';
 import 'package:demo_casa_3/login.dart';
-import 'package:demo_casa_3/users/md/homeMD.dart';
-import 'package:demo_casa_3/users/md/desktop/mods.dart';
-import 'package:demo_casa_3/users/md/scanQR.dart';
+import 'package:demo_casa_3/users/rp/mobile/codigoQR.dart';
+import 'package:demo_casa_3/users/rp/desktop/home.dart';
 import 'package:flutter/material.dart';
 
 class DesktopScaffold extends StatefulWidget {
@@ -14,7 +13,7 @@ class DesktopScaffold extends StatefulWidget {
 
 class _DesktopScaffoldState extends State<DesktopScaffold> {
   var selectedPage = 0;
-  static const int caseCerrarSesion = 6;
+  static const int caseCerrarSesion = 4;
   TextStyle LabelStyle = TextStyle(fontWeight: FontWeight.w400);
   Color destinationIcon = Color.fromARGB(255, 33, 122, 112);
   Color destinationIconSelected = Colors.black;
@@ -24,22 +23,16 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
 
     switch (selectedPage){
       case 0: //HOME
-        page = HomeMD();
+        page = Home();
         break;
-      case 1://Scan QR
-        page= ScanQR();
-        break;
-      case 2://MODS
-        page = ModeradoresMD();
-        break;
-      case 3://JUGADORES
+      case 1://MI PROGRESO
         page= Placeholder();
         break;
-      case 4://ANALITICOS
-        page = Placeholder();
+      case 2://QR
+        page = myQR();
         break;
-      case 5: //PRODUCTOS
-        page = Placeholder();
+      case 3://PREFERENCIAS
+        page= Placeholder();
         break;
       case caseCerrarSesion://CERRAR SESION
         //page = Login();
@@ -66,31 +59,21 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                       label: Text('Inicio',style: LabelStyle),
                     ),
                     NavigationRailDestination(
-                      icon: Icon(iconScanQR,color:destinationIcon), 
+                      icon: Icon(iconBolt,color:destinationIcon), 
                       selectedIcon: Icon(iconScanQR,color:destinationIconSelected),
-                      label: Text('Scanear QR',style: LabelStyle),
+                      label: Text('Mi progreso',style: LabelStyle),
                     ),
                     
                     NavigationRailDestination(
                       icon: Icon(iconMods,color:destinationIcon), 
                       selectedIcon: Icon(iconMods,color:destinationIconSelected),
-                      label: Text('Moderadores',style: LabelStyle),
+                      label: Text('Mi QR',style: LabelStyle),
                       disabled: false,  // administrar permisos de mods
                     ),
                     NavigationRailDestination(
                       icon: Icon(iconJugadores,color:destinationIcon),
                       selectedIcon: Icon(iconJugadores,color:destinationIconSelected), 
-                      label: Text('Jugadores',style: LabelStyle),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(iconBarrchart,color:destinationIcon),
-                      selectedIcon: Icon(iconBarrchart,color:destinationIconSelected), 
-                      label: Text('Analíticos',style: LabelStyle),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(iconProducts,color:destinationIcon), 
-                      selectedIcon: Icon(iconProducts,color:destinationIconSelected),
-                      label: Text('Productos',style: LabelStyle),
+                      label: Text('Preferencias',style: LabelStyle),
                     ),
                     NavigationRailDestination(
                       icon: Icon(iconSalir,color:destinationIcon), 

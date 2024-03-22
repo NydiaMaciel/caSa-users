@@ -9,6 +9,8 @@ class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool responsive = MediaQuery.of(context).size.width>1100?true:false;
+    double Mdwidth= MediaQuery.of(context).size.width;
     return Container(
       margin: EdgeInsets.all(15),
       padding: EdgeInsets.all(5),
@@ -21,7 +23,7 @@ class EventCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
-            width: MediaQuery.of(context).size.width*0.55,
+            width: responsive?Mdwidth*0.20:Mdwidth*0.60,
             child: Column(
               children: [
                 Text(titleEvent_,style: const TextStyle(
@@ -43,20 +45,23 @@ class EventCard extends StatelessWidget {
             ),
           ),
           //SizedBox(width: 10,),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('$pointsEvent_',style: const TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
+          Container(
+            width: responsive?Mdwidth*0.07:Mdwidth*0.20,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('$pointsEvent_',style: const TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              Text('puntos',style: const TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
+                Text('puntos',style: const TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

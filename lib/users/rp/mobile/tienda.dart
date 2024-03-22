@@ -21,6 +21,7 @@ class _TiendaState extends State<Tienda> {
   ];
   @override
   Widget build(BuildContext context) {
+    bool responsive = MediaQuery.of(context).size.width>1100?true:false;
     setState(() {
       ctrl_coins.text=puntos.toString();
     });
@@ -72,19 +73,19 @@ class _TiendaState extends State<Tienda> {
             ),
             //cards 
             Container(
-              padding: EdgeInsets.all(5),
+              padding: EdgeInsets.all(responsive?20:5),
               height: MediaQuery.of(context).size.height*0.83,
               width: MediaQuery.of(context).size.width,
               child: GridView(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 2,
+                crossAxisCount: responsive?7:2,
+                
                 ),
                 scrollDirection: Axis.vertical,
-                children: List.generate(10, (index) {
+                children: List.generate(20, (index) {
                   return Container(
                     padding: EdgeInsets.only(left:5,right:5),
-                    margin: EdgeInsets.all(10),
+                    margin: EdgeInsets.all(responsive?20:10),
                     height: 500,
                     width: 100,
                     decoration: BoxDecoration(

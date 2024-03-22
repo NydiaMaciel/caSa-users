@@ -1,8 +1,11 @@
 import 'package:demo_casa_3/icons.dart';
 import 'package:demo_casa_3/login.dart';
+import 'package:demo_casa_3/users/md/desktop/analitcs.dart';
+import 'package:demo_casa_3/users/md/desktop/productos.dart';
+import 'package:demo_casa_3/users/md/desktop/rps.dart';
 import 'package:demo_casa_3/users/md/homeMD.dart';
 import 'package:demo_casa_3/users/md/desktop/mods.dart';
-import 'package:demo_casa_3/users/md/scanQR.dart';
+import 'package:demo_casa_3/users/md/scanner.dart';
 import 'package:flutter/material.dart';
 
 class DesktopScaffold extends StatefulWidget {
@@ -14,10 +17,11 @@ class DesktopScaffold extends StatefulWidget {
 
 class _DesktopScaffoldState extends State<DesktopScaffold> {
   var selectedPage = 0;
-  static const int caseCerrarSesion = 6;
+  static const int caseCerrarSesion = 7;
   TextStyle LabelStyle = TextStyle(fontWeight: FontWeight.w400);
-  Color destinationIcon = Color.fromARGB(255, 33, 122, 112);
-  Color destinationIconSelected = Colors.black;
+  bool disableDestination=true;
+  Color destinationIcon = Color.fromARGB(255, 133, 138, 137);
+  Color destinationIconSelected = Color.fromARGB(255, 33, 122, 112);
   @override
   Widget build (BuildContext context){    
     Widget page = Placeholder();
@@ -27,22 +31,24 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
         page = HomeMD();
         break;
       case 1://Scan QR
-        page= ScanQR();
+        page= Scanner();
         break;
       case 2://MODS
         page = ModeradoresMD();
         break;
       case 3://JUGADORES
-        page= Placeholder();
+        page= JugadoresMD();
         break;
       case 4://ANALITICOS
-        page = Placeholder();
+        page = Analitics();
         break;
       case 5: //PRODUCTOS
+        page = ProductosTab();
+        break;
+      case 6: //PREFERENCIAS
         page = Placeholder();
         break;
       case caseCerrarSesion://CERRAR SESION
-        //page = Login();
         break;
       default:
         throw UnimplementedError('no widget for $selectedPage');
@@ -66,9 +72,10 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                       label: Text('Inicio',style: LabelStyle),
                     ),
                     NavigationRailDestination(
-                      icon: Icon(iconScanQR,color:destinationIcon), 
+                      disabled: disableDestination,
+                      icon: disableDestination? Icon(iconScanQR,color:const Color.fromARGB(255, 177, 177, 177)):Icon(iconScanQR,color:destinationIcon), 
                       selectedIcon: Icon(iconScanQR,color:destinationIconSelected),
-                      label: Text('Scanear QR',style: LabelStyle),
+                      label: Text('Escanear QR',style: LabelStyle),
                     ),
                     
                     NavigationRailDestination(
@@ -93,6 +100,11 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                       label: Text('Productos',style: LabelStyle),
                     ),
                     NavigationRailDestination(
+                      icon: Icon(iconSettings,color:destinationIcon), 
+                      selectedIcon: Icon(iconSettings,color:destinationIconSelected),
+                      label: Text('Preferencias',style: LabelStyle),
+                    ),
+                    NavigationRailDestination(
                       icon: Icon(iconSalir,color:destinationIcon), 
                       selectedIcon: Icon(iconSalir,color:destinationIconSelected), 
                       label: Text('Cerrar Sesión',style: LabelStyle),
@@ -106,6 +118,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                       if (value==caseCerrarSesion){
                         selectedPage=anterior;
                         showDialog(context: context, 
+                        barrierDismissible: false,
                           builder: (_)=> AlertDialog(
                             title: const Text('Cerrar Sesión'),
                             content: const Text('¿Está seguro que desea cerrar la sesión?'),

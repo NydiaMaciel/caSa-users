@@ -2,8 +2,10 @@ import 'package:demo_casa_3/data/moderadoresClass.dart';
 import 'package:demo_casa_3/icons.dart';
 import 'package:flutter/material.dart';
 
-final List<Moderadores> lista = moderadoreslista;
-final TextEditingController ctrl_nombre = new TextEditingController();
+List<Moderadores> lista = moderadoreslista;
+TextEditingController ctrl_nombre = new TextEditingController();
+TextEditingController ctrl_query = new TextEditingController();
+bool iconSearchBarCancel=false;
 bool flag_permiso1 = false;
 bool flag_permiso2 = false;
 bool flag_permiso3 = false;
@@ -21,7 +23,6 @@ class _ModeradoresMDState extends State<ModeradoresMD> {
   bool sortAscending = true;
   bool editflag = false;
   Color checkColor = Color.fromARGB(255, 51, 72, 135);
-  List<Moderadores> filterData = lista;
 
   onSortColumn(int colIndex, bool ascending){
     if(colIndex==0){
@@ -197,9 +198,49 @@ class _ModeradoresMDState extends State<ModeradoresMD> {
             Text('Lista de moderadores',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
-            SizedBox(height: 20,),
+            SizedBox(height: 10,),
             Container(
-              height: MediaQuery.of(context).size.height*0.79,
+              margin: EdgeInsets.all(10),
+              height: 30,
+              width: 200,
+              child: TextField(
+                controller: ctrl_query,
+                style: TextStyle(fontSize: 14),
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(5),
+                  labelStyle: TextStyle(fontSize: 5),
+                  prefixIcon: const Icon(Icons.search,size: 20,),
+                  suffixIcon: iconSearchBarCancel? IconButton(
+                    icon: Icon(iconX,size: 15,),
+                    onPressed: (){
+                      setState(() {
+                        ctrl_query.text="";
+                        lista=moderadoreslista;
+                        iconSearchBarCancel=false;
+                      });
+                    }, 
+                  ):null,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(width: 0.5,style: BorderStyle.solid),
+                  ),
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    if(value==""){
+                      lista=moderadoreslista;
+                      iconSearchBarCancel=false;
+                    }else{
+                      iconSearchBarCancel=true;
+                      lista=filter(value);
+                    }
+                  });
+                },
+              ),
+            ),
+            SizedBox(height: 5,),
+            Container(
+              height: MediaQuery.of(context).size.height*0.75,
               child: SingleChildScrollView(
                 child: DataTable(
                   sortColumnIndex: 0,
@@ -349,5 +390,14 @@ class _ModeradoresMDState extends State<ModeradoresMD> {
         ),
     ),
   );
+  }
+
+  List<Moderadores> filter (String query){
+    final cards = moderadoreslista.where((element) {
+      String lowerName = element.nombre.toLowerCase();
+      String lowerQuery = query.toLowerCase();
+      return lowerName.contains(lowerQuery);
+    }).toList();
+    return cards;
   }
 }

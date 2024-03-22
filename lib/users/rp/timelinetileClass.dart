@@ -44,12 +44,12 @@ class MyTimeLineTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 200, //espacio entre eventos
+    bool responsive = MediaQuery.of(context).size.width>1100?true:false;
+    return Container(
+      height: responsive?150:200, //espacio entre eventos
       child: TimelineTile(
         isFirst: isFirst,
         isLast: isLast,
-      
         beforeLineStyle: LineStyle(
           thickness: 6.5,
           color: isPast? Color.fromARGB(255, 145, 98, 151): Color.fromARGB(255, 190, 165, 194),
