@@ -9,7 +9,8 @@ import 'package:demo_casa_3/users/md/scanner.dart';
 import 'package:flutter/material.dart';
 
 class DesktopScaffold extends StatefulWidget {
-  const DesktopScaffold({super.key});
+  String usuario;
+  DesktopScaffold({super.key, required this.usuario});
 
   @override
   State<DesktopScaffold> createState() => _DesktopScaffoldState();
@@ -31,7 +32,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
         page = HomeMD();
         break;
       case 1://Scan QR
-        page= Scanner();
+        page= Scanner(usuario: '',);
         break;
       case 2://MODS
         page = ModeradoresMD();

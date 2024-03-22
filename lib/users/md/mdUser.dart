@@ -4,7 +4,8 @@ import 'package:demo_casa_3/users/md/modUserLayout.dart';
 import 'package:flutter/material.dart';
 
 class MdUser extends StatefulWidget {
-  const MdUser({super.key});
+  String usuario;
+  MdUser({super.key,required this.usuario});
 
   @override
   State<MdUser> createState() => _MdUserState();
@@ -14,6 +15,6 @@ class _MdUserState extends State<MdUser> {
   @override
   Widget build(BuildContext context) {
     //return const Placeholder();
-    return ModUserLayout(mobileScaffold: mobileScaffold(), desktopScaffold: DesktopScaffold());
+    return ModUserLayout(mobileScaffold: mobileScaffold(usuario: widget.usuario), desktopScaffold: DesktopScaffold(usuario: widget.usuario,));
   }
 }

@@ -151,10 +151,10 @@ class _LoginState extends State <Login>{
                             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>RpUser(usuario: user.text)));
                           }
                           if(user.text.toLowerCase()=="admin"){
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MdUser()));
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MdUser(usuario: user.text,)));
                           }
                           if(user.text.toLowerCase()=="mod"){
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MdUser()));
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MdUser(usuario: user.text,)));
                           }
                         },  
                         child: const Text('entrar', style: TextStyle(

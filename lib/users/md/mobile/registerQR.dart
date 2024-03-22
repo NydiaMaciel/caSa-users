@@ -5,8 +5,9 @@ import 'package:getwidget/getwidget.dart';
 
 
 class RegisterQR extends StatefulWidget {
-  final String code;
-  const RegisterQR({required this.code});
+  String usuario;
+  String code;
+  RegisterQR({required this.code,required this.usuario});
 
   @override
   State<RegisterQR> createState() => _RegisterQRState();
@@ -107,7 +108,7 @@ class _RegisterQRState extends State<RegisterQR> {
                   setState(() {
                     tituloAppBar='';
                   });
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>mobileScaffold()));
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>mobileScaffold(usuario: widget.usuario,)));
                 }
               },  
               child: const Text('Registrar', style: TextStyle(

@@ -10,7 +10,8 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 String url='url';
 
 class Scanner extends StatefulWidget {
-  const Scanner({super.key});
+  String usuario;
+  Scanner({super.key, required this.usuario});
 
 
   @override
@@ -48,7 +49,7 @@ class _ScannerState extends State<Scanner> {
                         url=code.toString();
                         //Navigator.push(context,MaterialPageRoute(builder: (context) =>RegisterQR(code: url)));  
                       });
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>RegisterQR(code: url)));
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>RegisterQR(code: url,usuario: widget.usuario,)));
                       //Navigator.of(context).pop();
                     }
                   ),
