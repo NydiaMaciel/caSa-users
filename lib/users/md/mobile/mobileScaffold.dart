@@ -1,9 +1,7 @@
-import 'package:demo_casa_3/icons.dart';
-import 'package:demo_casa_3/login.dart';
-import 'package:demo_casa_3/users/md/desktop/mods.dart';
+import 'package:demo_casa_3/generals/icons.dart';
+import 'package:demo_casa_3/generals/login.dart';
 import 'package:demo_casa_3/users/md/mobile/modsMobile.dart';
 import 'package:demo_casa_3/users/md/mobile/rpsMobile.dart';
-import 'package:demo_casa_3/users/md/scanQR.dart';
 import 'package:demo_casa_3/users/md/scanner.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

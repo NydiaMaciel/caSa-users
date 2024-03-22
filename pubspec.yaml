@@ -109,6 +109,51 @@ flutter:
     - family: Quick
       fonts:
         - asset: fonts/Quick Cat.otf
+    - family: Sirukota
+      fonts:
+        - asset: fonts/Sirukota.ttf
+    - family: Papernotes 
+      fonts: 
+        - asset: fonts/Papernotes.ttf
+    - family: Letters
+      fonts:
+        - asset: fonts/Letters for Learners.ttf 
+    - family: Handineat
+      fonts:
+        - asset: fonts/Handineat.otf
+    - family: Vintage Avalanche 
+      fonts: 
+        - asset: fonts/Vintage Avalanche Black.otf
+        - asset: fonts/Vintage Avalanche.otf
+    - family: Robaga
+      fonts:
+        - asset: fonts/Robaga Rounded Regular.otf
+    - family: Nirmala
+      fonts:
+        - asset: fonts/Nirmala Trial.otf
+    - family: 
+      fonts:
+        - asset: fonts/Pacifico.ttf
+    - family: Pistara
+      fonts:
+        - asset: fonts/Pistara.otf
+    - family: Florence
+      fonts:
+        - asset: fonts/Florence-Regular.otf
+    - family: Antipasto
+      fonts:
+        - asset: fonts/Antipasto-Pro-Regular-trial.ttf
+     
+    - family: Quicksand
+      fonts:
+        - asset: fonts/Quicksand_Bold_Oblique.otf 
+        - asset: fonts/Quicksand_Bold.otf 
+        - asset: fonts/Quicksand_Book_Oblique.otf 
+        - asset: fonts/Quicksand_Book.otf 
+        - asset: fonts/Quicksand_Dash.otf 
+        - asset: fonts/Quicksand_Light_Oblique.otf 
+        - asset: fonts/Quicksand_Light.otf
+
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #

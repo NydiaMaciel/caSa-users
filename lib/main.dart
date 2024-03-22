@@ -1,4 +1,4 @@
-import 'package:demo_casa_3/login.dart';
+import 'package:demo_casa_3/generals/login.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Colors.blue[900],
+        primaryColor: const Color.fromARGB(255, 13, 161, 154),
       ),
       home: Login(),
     );

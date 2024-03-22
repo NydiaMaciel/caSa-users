@@ -1,6 +1,6 @@
-import 'package:demo_casa_3/icons.dart';
+import 'package:demo_casa_3/generals/icons.dart';
 import 'package:flutter/material.dart';
-import '../login.dart';
+import 'login.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -55,13 +55,13 @@ class _RegState extends State <Register>{
                 style: TextStyle(
                   color: iconcolor,
                   fontFamily: "Wenstern",
-                  fontSize: 40,
+                  fontSize: responsive?30:40,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               SizedBox(height: 20,),
               Container(
-                //height: MediaQuery.of(context).size.height*0.60,
-                width: responsive? MediaQuery.of(context).size.width*0.95:MediaQuery.of(context).size.width*0.40,
+                width: responsive? MediaQuery.of(context).size.width*0.93:MediaQuery.of(context).size.width*0.40,
                 padding: EdgeInsets.all(responsive? 15:30,),
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(192, 230,204,179),
@@ -289,6 +289,7 @@ class _RegState extends State <Register>{
                 child: const Text('Registrar', style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
+                  fontFamily: 'Wenstern',
                   fontWeight: FontWeight.w700
                   ),
                 ),

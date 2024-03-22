@@ -1,5 +1,5 @@
 import 'package:demo_casa_3/data/jugadoresClass.dart';
-import 'package:demo_casa_3/icons.dart';
+import 'package:demo_casa_3/generals/icons.dart';
 import 'package:flutter/material.dart';
 
 

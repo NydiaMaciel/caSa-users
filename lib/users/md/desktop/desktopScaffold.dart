@@ -1,5 +1,5 @@
-import 'package:demo_casa_3/icons.dart';
-import 'package:demo_casa_3/login.dart';
+import 'package:demo_casa_3/generals/icons.dart';
+import 'package:demo_casa_3/generals/login.dart';
 import 'package:demo_casa_3/users/md/desktop/analitcs.dart';
 import 'package:demo_casa_3/users/md/desktop/productos.dart';
 import 'package:demo_casa_3/users/md/desktop/rps.dart';

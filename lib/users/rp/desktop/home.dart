@@ -1,6 +1,6 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:demo_casa_3/icons.dart';
+import 'package:demo_casa_3/generals/icons.dart';
 import 'package:demo_casa_3/users/rp/mobile/tienda.dart';
 import 'package:demo_casa_3/users/rp/timelinetileClass.dart';
 import 'package:flutter/material.dart';

@@ -1,13 +1,9 @@
-import 'package:demo_casa_3/login/register.dart';
+import 'package:demo_casa_3/generals/recupwd.dart';
+import 'package:demo_casa_3/generals/register.dart';
 import 'package:demo_casa_3/users/md/mdUser.dart';
 import 'package:demo_casa_3/users/rp/rpUser.dart';
 import 'package:flutter/material.dart';
 import 'icons.dart';
-//import 'register.dart';
-//import 'rp/role_rp.dart';
-//import 'adm/role_adm.dart';
-//import 'mod/role_mod.dart';
-//import 'package:demo_casa_1/recupwd.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -15,14 +11,14 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State <Login>{
-  final TextEditingController user = new TextEditingController();
-  final TextEditingController pswd = new TextEditingController();
+  TextEditingController user = new TextEditingController();
+  TextEditingController pswd = new TextEditingController();
 
   @override
   Widget build (BuildContext context){
     Color iconcolor = Colors.black45;
     double sizeicon = 17;
-    final bool responsive_ = MediaQuery.of(context).size.width<1100;
+    bool responsive_ = MediaQuery.of(context).size.width<1100;
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -47,8 +43,8 @@ class _LoginState extends State <Login>{
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  height: responsive_? 190:200,//mobile:desktop,
-                  width: responsive_? 190:200,
+                  height: responsive_? 190:150,//mobile:desktop,
+                  width: responsive_? 190:150,
                   decoration:const BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,
@@ -57,7 +53,7 @@ class _LoginState extends State <Login>{
                     borderRadius: BorderRadius.all(Radius.circular(100.0)),
                   ),
                 ),
-                SizedBox( height: 10,),
+                SizedBox( height: responsive_?10:1,),
                 Text("c∙a∙S∙a",
                   style: TextStyle(
                     fontSize: 50,
@@ -125,7 +121,7 @@ class _LoginState extends State <Login>{
                       SizedBox(height: responsive_?15:5,),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Placeholder()));
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Recup()));
                         },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -161,9 +157,10 @@ class _LoginState extends State <Login>{
                             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MdUser()));
                           }
                         },  
-                        child: const Text('Entrar', style: TextStyle(
+                        child: const Text('entrar', style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
+                          fontFamily: 'Wenstern',
                           fontWeight: FontWeight.w700
                           ),
                         ),
@@ -187,7 +184,7 @@ class _LoginState extends State <Login>{
                           ],
                         ),
                       ),
-                      SizedBox(height: responsive_?10:5,),
+                      SizedBox(height: responsive_?10:1,),
                     ]
                   ),
                 ),
