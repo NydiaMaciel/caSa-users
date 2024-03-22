@@ -1,0 +1,116 @@
+name: demo_casa_3
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.6 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  font_awesome_flutter: ^10.7.0
+  flutter_svg: ^2.0.10+1
+  icon_font_generator: ^4.0.0
+  timeline_tile: ^2.0.0
+  getwidget: ^4.0.0
+  pretty_qr_code: ^3.2.1
+  qr_code_scanner: ^1.0.1
+  mobile_scanner: ^2.1.0 
+  #mobile_scanner: ^4.0.1
+  #flutter_barcode_sdk: ^2.2.6
+  camera: ^0.10.5+9
+  
+
+dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+  - images/circle.png
+  - images/logo.jpeg
+  - images/loading.gif
+  - images/loadorganic.gif
+  - images/iconslib/wine-bottle-blank.svg
+  - images/Carrousel/pexels1.jpg
+  - images/Carrousel/pexels2.jpg
+  - images/Carrousel/pexels3.jpg
+  - images/Carrousel/pexels4.jpg
+  - images/iconslib/check_done.png
+  - images/iconslib/check_nope.png
+  - images/codigoQR.jpeg
+  - images/premios/regalo_2.png
+  - images/premios/regalo_3.png
+  - images/premios/regalo_4.png
+  - images/insignias/capture.png
+  - images/insignias/capture1.png
+  - images/insignias/capture2.png
+  - images/insignias/capture3.png
+  - images/insignias/capture4.png
+  - images/insignias/capture5.png
+  - images/insignias/capture6.png
+  - images/insignias/capture7.png
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  fonts:
+    - family: manbow
+      fonts:
+        - asset: fonts/manbow lines.otf
+    - family: Retrolight
+      fonts:
+        - asset: fonts/Retrolight.otf
+    - family: Hello
+      fonts:
+        - asset: fonts/Hello Avocado.otf
+    - family: Mochi
+      fonts:
+        - asset: fonts/Mochi Cakes_DEMO.ttf
+    - family: NeonBlitz
+      fonts:
+        - asset: fonts/Neonblitz.ttf
+    - family: Sunny
+      fonts:
+        - asset: fonts/Sunny Spells Basic.ttf
+    - family: street
+      fonts:
+        - asset: fonts/street cred.otf
+    - family: Vintage
+      fonts:
+        - asset: fonts/Vintage.ttf
+    - family: Wenstern
+      fonts:
+        - asset: fonts/Western Retro.ttf
+    - family: Emily
+      fonts:
+        - asset: fonts/Emily Olivia.otf
+    - family: Power
+      fonts:
+        - asset: fonts/Power Smash.ttf
+    - family: Quick
+      fonts:
+        - asset: fonts/Quick Cat.otf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
