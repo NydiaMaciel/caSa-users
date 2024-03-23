@@ -225,7 +225,7 @@ class _ModsMobile extends State<ModsMobile> {
             ),
           ),
           Container(
-            height: MediaQuery.of(context).size.height*0.7,
+            height: MediaQuery.of(context).size.height*0.77,
             //constraints: BoxConstraints(minWidth:1265.6, minHeight:0.0,maxHeight:double.infinity),
             child: ListView.builder(
               scrollDirection: Axis.vertical,

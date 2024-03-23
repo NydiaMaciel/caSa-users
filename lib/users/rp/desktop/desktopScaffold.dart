@@ -65,7 +65,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                     ),
                     
                     NavigationRailDestination(
-                      icon: Icon(iconMods,color:destinationIcon), 
+                      icon: Icon(iconScanQR,color:destinationIcon), 
                       selectedIcon: Icon(iconMods,color:destinationIconSelected),
                       label: Text('Mi QR',style: LabelStyle),
                       disabled: false,  // administrar permisos de mods

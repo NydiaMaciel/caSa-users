@@ -73,7 +73,7 @@ class _TiendaState extends State<Tienda> {
             //cards 
             Container(
               padding: EdgeInsets.all(responsive?20:5),
-              height: MediaQuery.of(context).size.height*0.83,
+              height: MediaQuery.of(context).size.height*0.80,
               width: MediaQuery.of(context).size.width,
               child: GridView(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

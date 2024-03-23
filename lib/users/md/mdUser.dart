@@ -15,6 +15,6 @@ class _MdUserState extends State<MdUser> {
   @override
   Widget build(BuildContext context) {
     //return const Placeholder();
-    return ModUserLayout(mobileScaffold: mobileScaffold(usuario: widget.usuario), desktopScaffold: DesktopScaffold(usuario: widget.usuario,));
+    return ModUserLayout(mobileScaffold: mobileScaffold(usuario: widget.usuario,pag: 0), desktopScaffold: DesktopScaffold(usuario: widget.usuario,));
   }
 }

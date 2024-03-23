@@ -86,7 +86,7 @@ class _HomeState extends State<Home> {
                 children: [
                   Container(
                     padding: EdgeInsets.only(left: 10),
-                    height: MediaQuery.of(context).size.height*0.85,
+                    height: MediaQuery.of(context).size.height*0.83,
                     width: 500,
                     color: Color.fromARGB(45, 101, 25, 145),
                     child: ListView(
@@ -138,7 +138,7 @@ class _HomeState extends State<Home> {
                   
                   Container(
                     padding: EdgeInsets.all(20),
-                    height: MediaQuery.of(context).size.height*0.57,
+                    //height: MediaQuery.of(context).size.height*0.57,
                     width: 300,
                     decoration: BoxDecoration(
                       color: Color.fromARGB(50, 25, 145, 125),

@@ -36,6 +36,10 @@ class _ModeradoresMDState extends State<ModeradoresMD> {
 
   @override
   Widget build(BuildContext context) {
+    
+    double MQwidth = MediaQuery.of(context).size.width;
+    bool responsive = MQwidth<1100? true:false;
+    
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: Icon(iconAdd),
@@ -240,7 +244,7 @@ class _ModeradoresMDState extends State<ModeradoresMD> {
             ),
             SizedBox(height: 5,),
             Container(
-              height: MediaQuery.of(context).size.height*0.75,
+              height: MediaQuery.of(context).size.height*0.73,
               child: SingleChildScrollView(
                 child: DataTable(
                   sortColumnIndex: 0,

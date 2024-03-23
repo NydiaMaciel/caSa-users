@@ -1,5 +1,6 @@
 import 'package:demo_casa_3/generals/icons.dart';
 import 'package:demo_casa_3/generals/login.dart';
+import 'package:demo_casa_3/users/md/mobile/productos.dart';
 import 'package:demo_casa_3/users/md/mobile/modsMobile.dart';
 import 'package:demo_casa_3/users/md/mobile/rpsMobile.dart';
 import 'package:demo_casa_3/users/md/scanner.dart';
@@ -13,16 +14,39 @@ Color hoverDrawerItem = Color.fromARGB(152, 209, 176, 207);
 
 class mobileScaffold extends StatefulWidget {
   String usuario;
-  mobileScaffold({super.key, required this.usuario});
+  int pag;
+  mobileScaffold({super.key, required this.usuario, required this.pag});
 
   @override
   State<mobileScaffold> createState() => _mobileScaffoldState();
 }
 
 class _mobileScaffoldState extends State<mobileScaffold> {
-  Widget bodyPage = HomeMD(); 
+  late Widget bodyPage; 
+  
   @override
   Widget build(BuildContext context) {
+  
+    switch(widget.pag){
+      case 0:
+        bodyPage=HomeMD();
+        break;
+      case 1:
+        bodyPage=Scanner(usuario: widget.usuario);
+        break;
+      case 2:
+        bodyPage=ModsMobile();
+        break;
+      case 3:
+        bodyPage=RpsMobile();
+        break;
+      case 4:
+        bodyPage=ProductosTab();
+        break;
+      case 5:
+        bodyPage=Placeholder();
+        break;
+    }
     return Scaffold(
       appBar: AppBar(title: Text(tituloAppBar),backgroundColor: const Color.fromARGB(0, 82, 198, 188),),
       backgroundColor: Color.fromARGB(255, 131, 174, 177),
@@ -56,7 +80,7 @@ class _mobileScaffoldState extends State<mobileScaffold> {
                 onTap: () {
                   setState(() {
                     tituloAppBar="";
-                    bodyPage = HomeMD();
+                    widget.pag=0;
                   });
                   Navigator.of(context).pop();
                 },
@@ -68,7 +92,7 @@ class _mobileScaffoldState extends State<mobileScaffold> {
                 onTap: () {
                   setState(() {
                     tituloAppBar="Escanear QR";
-                    bodyPage= Scanner(usuario: widget.usuario,);
+                    widget.pag=1;
                   });
                   Navigator.of(context).pop();
                 },
@@ -80,7 +104,7 @@ class _mobileScaffoldState extends State<mobileScaffold> {
                 onTap: () {
                   setState(() {
                     tituloAppBar="Moderadores";
-                    bodyPage=ModsMobile();
+                    widget.pag=2;
                   });
                   Navigator.of(context).pop();
                 },
@@ -92,7 +116,7 @@ class _mobileScaffoldState extends State<mobileScaffold> {
                 onTap: () {
                   setState(() {
                     tituloAppBar="Jugadores";
-                    bodyPage=RpsMobile();
+                    widget.pag=3;
                   });
                   Navigator.of(context).pop();
                 },
@@ -104,7 +128,7 @@ class _mobileScaffoldState extends State<mobileScaffold> {
                 onTap: () {
                   setState(() {
                     tituloAppBar="Productos";
-                    bodyPage=Placeholder();
+                    widget.pag=4;
                   });
                   Navigator.of(context).pop();
                 },
@@ -116,7 +140,7 @@ class _mobileScaffoldState extends State<mobileScaffold> {
                 onTap: () {
                   setState(() {
                     tituloAppBar="Preferencias";
-                    bodyPage=Placeholder();
+                    widget.pag=5;
                   });
                   Navigator.of(context).pop();
                 },

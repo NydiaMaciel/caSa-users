@@ -100,7 +100,7 @@ class _RpsMobileState extends State<RpsMobile> {
                   return DataRow(
                     onLongPress: () {
                       showDialog(
-                        //barrierDismissible: false,
+                        barrierDismissible: false,
                         context: context, 
                         builder:(BuildContext context){
                           return AlertDialog(

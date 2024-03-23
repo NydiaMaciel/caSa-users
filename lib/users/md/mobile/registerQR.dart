@@ -24,21 +24,27 @@ class _RegisterQRState extends State<RegisterQR> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              alignment: Alignment.center,
-              padding: EdgeInsets.all(10),
-              height: 100,
+              //padding: EdgeInsets.all(10),
+              height: 150,
               width: MediaQuery.of(context).size.width*0.8,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 226, 202, 210),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(widget.code, style: TextStyle(fontSize: 25),),
+                  Text(widget.code, 
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 25,
+                    ),
+                  ),
                 ],
               ),
             ),
-            SizedBox(height: 25,),
+            SizedBox(height: 50,),
             Row(
               
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -105,13 +111,27 @@ class _RegisterQRState extends State<RegisterQR> {
               
               onPressed: () {  
                 if (cont>0){
-                  setState(() {
-                    tituloAppBar='';
-                  });
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>mobileScaffold(usuario: widget.usuario,)));
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>mobileScaffold(usuario: widget.usuario,pag: 1,)));
                 }
               },  
               child: const Text('Registrar', style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.w700
+                ),
+              ),
+            ),
+            SizedBox(height: 20,),
+            TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor:Color.fromARGB(153, 158, 158, 158),
+                padding: EdgeInsets.symmetric(vertical:10.0, horizontal:25.0), 
+              ),
+              
+              onPressed: () {  
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>mobileScaffold(usuario: widget.usuario,pag: 1,)));
+              },  
+              child: const Text('Cancelar', style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.w700
