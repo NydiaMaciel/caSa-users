@@ -1,3 +1,4 @@
+import 'package:demo_casa_3/generals/settings.dart';
 import 'package:demo_casa_3/users/rp/mobile/codigoQR.dart';
 import 'package:demo_casa_3/users/rp/mobile/home.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,30 +22,32 @@ class _mobileScaffoldState extends State<mobileScaffold> {
   Widget bodyPage = Home();
   @override
   Widget build(BuildContext context) {
+    bool responsive = MediaQuery.of(context).size.width<1100? true:false;
     return Scaffold(
       appBar: AppBar(title: Text(tituloAppBar),backgroundColor: const Color.fromARGB(0, 82, 198, 188),),
       backgroundColor: Color.fromARGB(255,143,216,196),
       drawer: Container(
-        height: MediaQuery.of(context).size.height*0.9,
+        height: MediaQuery.of(context).size.height*0.8,
         child: Drawer(    
           width: 250,
           backgroundColor: Color.fromARGB(255, 169, 211, 200),
           child: Column(
             children: [
-              SizedBox(
-                width: 240,
-                height: 150,
-                child:  DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                ),
+              Container(
+                color: Colors.white,
                 child: ListTile(
-                    leading:Icon(FontAwesomeIcons.userLarge),
-                    title: Text(widget.usuario),
-                    textColor: Color.fromARGB(255, 86, 126, 115),
-                    iconColor: Color.fromARGB(255, 86, 126, 115),
-                  ),
-              ),
+                  contentPadding: EdgeInsets.all(10),
+                      leading:Icon(FontAwesomeIcons.userLarge),
+                      title: Text(widget.usuario, style: TextStyle(
+                        fontSize: 18,
+                      ),),
+                      textColor: Color.fromARGB(255, 86, 126, 115),
+                      iconColor: Color.fromARGB(255, 86, 126, 115),
+                      subtitle: Text('usuario@exemple.com',style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w500,
+                      ),),
+                    ),
               ),
               ListTile(
                 leading: const Icon(Icons.home),
@@ -89,7 +92,7 @@ class _mobileScaffoldState extends State<mobileScaffold> {
                 onTap: () {
                   setState(() {
                     tituloAppBar="Preferencias";
-                    bodyPage=Placeholder();
+                    bodyPage=Settings(usuario: widget.usuario,);
                   });
                   Navigator.of(context).pop();
                 },

@@ -15,6 +15,6 @@ class _RpUserState extends State<RpUser> {
   @override
   Widget build(BuildContext context) {
     //return const Placeholder();
-    return RpUserLayout(mobileScaffold: mobileScaffold(usuario: widget.usuario,), desktopScaffold: DesktopScaffold());
+    return RpUserLayout(mobileScaffold: mobileScaffold(usuario: widget.usuario,), desktopScaffold: DesktopScaffold(usuario: widget.usuario,));
   }
 }

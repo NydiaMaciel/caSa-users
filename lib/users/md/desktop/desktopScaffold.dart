@@ -1,5 +1,6 @@
 import 'package:demo_casa_3/generals/icons.dart';
 import 'package:demo_casa_3/generals/login.dart';
+import 'package:demo_casa_3/generals/settings.dart';
 import 'package:demo_casa_3/users/md/desktop/analitcs.dart';
 import 'package:demo_casa_3/users/md/desktop/productos.dart';
 import 'package:demo_casa_3/users/md/desktop/rps.dart';
@@ -47,7 +48,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
         page = ProductosTab();
         break;
       case 6: //PREFERENCIAS
-        page = Placeholder();
+        page = Settings(usuario: widget.usuario);
         break;
       case caseCerrarSesion://CERRAR SESION
         break;

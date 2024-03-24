@@ -131,7 +131,7 @@ flutter:
     - family: Nirmala
       fonts:
         - asset: fonts/Nirmala Trial.otf
-    - family: 
+    - family: Pacifico
       fonts:
         - asset: fonts/Pacifico.ttf
     - family: Pistara

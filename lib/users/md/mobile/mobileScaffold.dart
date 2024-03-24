@@ -1,5 +1,6 @@
 import 'package:demo_casa_3/generals/icons.dart';
 import 'package:demo_casa_3/generals/login.dart';
+import 'package:demo_casa_3/generals/settings.dart';
 import 'package:demo_casa_3/users/md/mobile/productos.dart';
 import 'package:demo_casa_3/users/md/mobile/modsMobile.dart';
 import 'package:demo_casa_3/users/md/mobile/rpsMobile.dart';
@@ -44,7 +45,7 @@ class _mobileScaffoldState extends State<mobileScaffold> {
         bodyPage=ProductosTab();
         break;
       case 5:
-        bodyPage=Placeholder();
+        bodyPage=Settings(usuario: widget.usuario,);
         break;
     }
     return Scaffold(
@@ -54,24 +55,25 @@ class _mobileScaffoldState extends State<mobileScaffold> {
         height: MediaQuery.of(context).size.height*0.8,
         child: Drawer(    
           width: 250,
-          backgroundColor: Color.fromARGB(255, 255, 212, 253),
+          backgroundColor: Color.fromARGB(255,143,216,196),
           
           child: Column(
             children: [
-              SizedBox(
-                width: 240,
-                height: 150,
-                child:  DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                ),
+              Container(
+                color: Colors.white,
                 child: ListTile(
-                  leading:Icon(FontAwesomeIcons.userLarge),
-                  title: Text(widget.usuario),
-                  textColor: Colors.deepPurple,
-                  iconColor: Colors.deepPurple,
-                ),
-              ),
+                  contentPadding: EdgeInsets.all(10),
+                    leading:Icon(FontAwesomeIcons.userLarge),
+                    title: Text(widget.usuario, style: TextStyle(
+                      fontSize: 18,
+                    ),),
+                    textColor: Color.fromARGB(255, 86, 126, 115),
+                    iconColor: Color.fromARGB(255, 86, 126, 115),
+                    subtitle: Text('usuario@exemple.com',style: TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w500,
+                    ),),
+                  ),
               ),
               ListTile(
                 leading: const Icon(Icons.home),

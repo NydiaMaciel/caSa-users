@@ -1,11 +1,13 @@
 import 'package:demo_casa_3/generals/icons.dart';
 import 'package:demo_casa_3/generals/login.dart';
+import 'package:demo_casa_3/generals/settings.dart';
 import 'package:demo_casa_3/users/rp/mobile/codigoQR.dart';
 import 'package:demo_casa_3/users/rp/desktop/home.dart';
 import 'package:flutter/material.dart';
 
 class DesktopScaffold extends StatefulWidget {
-  const DesktopScaffold({super.key});
+  String usuario;
+  DesktopScaffold({super.key,required this.usuario});
 
   @override
   State<DesktopScaffold> createState() => _DesktopScaffoldState();
@@ -18,7 +20,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
   Color destinationIcon = Color.fromARGB(255, 33, 122, 112);
   Color destinationIconSelected = Colors.black;
   @override
-  Widget build (BuildContext context){    
+  Widget build (BuildContext context){
     Widget page = Placeholder();
 
     switch (selectedPage){
@@ -32,7 +34,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
         page = myQR();
         break;
       case 3://PREFERENCIAS
-        page= Placeholder();
+        page= Settings(usuario: widget.usuario,);
         break;
       case caseCerrarSesion://CERRAR SESION
         //page = Login();
@@ -60,19 +62,19 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                     ),
                     NavigationRailDestination(
                       icon: Icon(iconBolt,color:destinationIcon), 
-                      selectedIcon: Icon(iconScanQR,color:destinationIconSelected),
+                      selectedIcon: Icon(iconBolt,color:destinationIconSelected),
                       label: Text('Mi progreso',style: LabelStyle),
                     ),
                     
                     NavigationRailDestination(
                       icon: Icon(iconScanQR,color:destinationIcon), 
-                      selectedIcon: Icon(iconMods,color:destinationIconSelected),
+                      selectedIcon: Icon(iconScanQR,color:destinationIconSelected),
                       label: Text('Mi QR',style: LabelStyle),
                       disabled: false,  // administrar permisos de mods
                     ),
                     NavigationRailDestination(
-                      icon: Icon(iconJugadores,color:destinationIcon),
-                      selectedIcon: Icon(iconJugadores,color:destinationIconSelected), 
+                      icon: Icon(iconSettings,color:destinationIcon),
+                      selectedIcon: Icon(iconSettings,color:destinationIconSelected), 
                       label: Text('Preferencias',style: LabelStyle),
                     ),
                     NavigationRailDestination(
