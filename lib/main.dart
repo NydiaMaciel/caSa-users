@@ -1,4 +1,4 @@
-import 'package:demo_casa_3/generals/login.dart';
+import 'package:demo_casa_3/screens/generals/login.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
