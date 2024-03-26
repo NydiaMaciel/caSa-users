@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'package:demo_casa_3/services/services.dart';
+
 class Moderadores {
   String nombre;
   String usuario;
@@ -27,6 +30,44 @@ class Moderadores {
   void setp4(bool p){p4 = p;}
   void setp5(bool p){p5 = p;}
 
+
+}
+
+void getAllModeradores()async{
+  try{
+    List<String> jsonStr = [];
+    List<Moderadores> modsget =[];
+    
+    var _jsonString = await Services().getModerators();
+    print('Json: '+_jsonString.runtimeType.toString());
+    
+    for (var user in _jsonString){
+      print(user.toString());
+      jsonStr.add(user.toString());
+    }
+    print('jsonStr.type: '+jsonStr.runtimeType.toString());
+    print('jsonStr: '+jsonStr.toString());
+
+    //List<Map<String>> userList = jsonDecode(jsonStr).cast<Map<String>>();
+
+    for (var user in jsonStr){
+      Map<String, dynamic> usuario = jsonDecode(user);
+      print(user);
+    }
+    
+    
+  }catch(e){
+    print('Error: $e');
+  }
+}
+
+void getallmods() {
+  String str;
+  Services().getModerators().then((value) {
+    print(value);
+    str=value.toString();
+  });
+  //return str!=null?'':str;
 }
 
 final List<Moderadores> moderadoreslista = [

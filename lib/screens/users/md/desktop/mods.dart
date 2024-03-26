@@ -1,5 +1,6 @@
 import 'package:demo_casa_3/screens/data/moderadoresClass.dart';
 import 'package:demo_casa_3/screens/generals/icons.dart';
+import 'package:demo_casa_3/services/services.dart';
 import 'package:flutter/material.dart';
 
 List<Moderadores> lista = moderadoreslista;
@@ -397,7 +398,8 @@ class _ModeradoresMDState extends State<ModeradoresMD> {
   }
 
   List<Moderadores> filter (String query){
-    final cards = moderadoreslista.where((element) {
+    List<Moderadores> tmp = moderadoreslista;
+    final cards = tmp.where((element) {
       String lowerName = element.nombre.toLowerCase();
       String lowerQuery = query.toLowerCase();
       return lowerName.contains(lowerQuery);

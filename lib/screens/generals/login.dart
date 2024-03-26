@@ -1,8 +1,11 @@
+import 'package:demo_casa_3/screens/data/moderadoresClass.dart';
+import 'package:demo_casa_3/services/services.dart';
+import 'package:flutter/material.dart';
+
 import 'package:demo_casa_3/screens/generals/recupwd.dart';
 import 'package:demo_casa_3/screens/generals/register.dart';
 import 'package:demo_casa_3/screens/users/md/mdUser.dart';
 import 'package:demo_casa_3/screens/users/rp/rpUser.dart';
-import 'package:flutter/material.dart';
 import 'icons.dart';
 
 class Login extends StatefulWidget {
@@ -146,17 +149,6 @@ class _LoginState extends State <Login>{
                           backgroundColor: Color.fromARGB(255,237,39,136),
                           padding: EdgeInsets.symmetric(vertical:responsive_? 10.0:20.0, horizontal:50.0),//mobile:desktop 
                         ),
-                        onPressed: () {                  
-                          if(user.text.toLowerCase()=="rp"){
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>RpUser(usuario: user.text)));
-                          }
-                          if(user.text.toLowerCase()=="admin"){
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MdUser(usuario: user.text,)));
-                          }
-                          if(user.text.toLowerCase()=="mod"){
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MdUser(usuario: user.text,)));
-                          }
-                        },  
                         child: const Text('entrar', style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -164,6 +156,19 @@ class _LoginState extends State <Login>{
                           fontWeight: FontWeight.w700
                           ),
                         ),
+                        onPressed: () async{
+                          //Services().getModerators();
+                          //getAllModeradores();                  
+                          if(user.text.toLowerCase()=="rp"){
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>RpUser(usuario: user.text)));
+                          }
+                          if(user.text.toLowerCase()=="admin"){
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MdUser(usuario: user.text,)));
+                          }
+                          if(user.text.toLowerCase()=="mod"){
+                            //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MdUser(usuario: user.text,)));
+                          }
+                        },  
                       ),
                       SizedBox(height: responsive_?20:10,),
                       GestureDetector( 
