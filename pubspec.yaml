@@ -1,4 +1,4 @@
-name: demo_casa_3
+name: casa
 description: "A new Flutter project."
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
@@ -19,8 +19,10 @@ dependencies:
   timeline_tile: ^2.0.0
   getwidget: ^4.0.0
   http: ^1.2.0
+  toastification: ^1.2.1
   
   pretty_qr_code: ^3.2.1
+  qr_flutter: ^4.1.0
   qr_code_scanner: ^1.0.1
   mobile_scanner: ^2.1.0 
   #mobile_scanner: ^4.0.1
@@ -60,6 +62,14 @@ flutter:
   - images/insignias/capture5.png
   - images/insignias/capture6.png
   - images/insignias/capture7.png
+  - images/insignias/anauyaca.png
+  - images/insignias/anauyaca.png
+  - images/insignias/coati.png
+  - images/insignias/jaguar.png
+  - images/insignias/mantarraya.png
+  - images/insignias/tiburon.png
+  - images/insignias/tortuga.png
+  - images/insignias/tucan.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

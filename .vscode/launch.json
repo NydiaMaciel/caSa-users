@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "demo_casa_3",
+            "name": "casa",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "demo_casa_3 (profile mode)",
+            "name": "casa (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "demo_casa_3 (release mode)",
+            "name": "casa (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

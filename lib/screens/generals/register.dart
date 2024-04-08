@@ -1,4 +1,5 @@
-import 'package:demo_casa_3/screens/generals/icons.dart';
+import 'package:casa/screens/generals/colores.dart';
+import 'package:casa/screens/generals/icons.dart';
 import 'package:flutter/material.dart';
 import 'login.dart';
 
@@ -23,7 +24,6 @@ class _RegState extends State <Register>{
   final TextEditingController type_ctrlr = new TextEditingController();
   @override
   Widget build (BuildContext context){
-  Color iconcolor = Colors.black45;
   double sizeicon = 15;
   double sizeiconHide = 20.0;
 
@@ -33,17 +33,11 @@ class _RegState extends State <Register>{
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [
-                //255, 183, 163, 144
-                //Color.fromARGB(255, 75, 75, 75),
-                Color.fromARGB(255,86,86,86),
-                Color.fromARGB(255,143,216,196),
-                //Color.fromARGB(255, 81, 144, 127),
-              ]
+              colors: [BGgradLoginSUP,BGgradLoginINF],
             )
           ),
         child: Center(
@@ -53,7 +47,7 @@ class _RegState extends State <Register>{
             children: [
               Text("Registro",
                 style: TextStyle(
-                  color: iconcolor,
+                  color: iconColorForm,
                   fontFamily: "Wenstern",
                   fontSize: responsive?30:40,
                   fontWeight: FontWeight.bold,
@@ -64,51 +58,11 @@ class _RegState extends State <Register>{
                 width: responsive? MediaQuery.of(context).size.width*0.93:MediaQuery.of(context).size.width*0.40,
                 padding: EdgeInsets.all(responsive? 15:30,),
                   decoration: BoxDecoration(
-                    color: const Color.fromARGB(192, 230,204,179),
+                    color: BGform,
                     borderRadius: BorderRadius.circular(10)
                   ),
                   child:Column(//////CAMPOS
                     children: [
-                      TextFormField(
-                        controller: name_ctrlr,
-                        decoration: InputDecoration(
-                          labelText: 'Nombre Completo',
-                          suffixIconConstraints: BoxConstraints(minHeight: 20,minWidth: 20),
-                          suffixIcon: Icon(iconUsuario, size:responsive?15:sizeicon,color:iconcolor),
-                          enabled: true,
-                        ),
-                        validator: (value) {
-                          if(value!.length == 0){
-                            return "Ingrese su nombre completo";
-                          }
-                          if (!RegExp("^[a-zA-Z ]*").hasMatch(value)) {
-                            return ("Por favor, ingrese correctamente su nombre.");
-                          } else {
-                            return null;
-                          }
-                        },
-                      ),
-                      SizedBox(height: 10,),
-                      TextFormField(
-                        controller: mail_ctrlr,
-                        decoration: InputDecoration(
-                          labelText: 'Correo Electrónico',
-                          suffixIconConstraints: BoxConstraints(minHeight: 20,minWidth: 20),
-                          suffixIcon: Icon(iconArroba, size:responsive?15:sizeicon,color:iconcolor),
-                          enabled: true,
-                        ),
-                        validator: (value) {
-                          if(value!.length == 0){
-                            return "Ingrese su correo electrónico";
-                          }
-                          if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
-                            return ("Por favor, ingrese un correo válido.");
-                          } else {
-                            return null;
-                          }
-                        },
-                      ),
-                      SizedBox(height: 10,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -119,7 +73,7 @@ class _RegState extends State <Register>{
                               decoration: InputDecoration(
                                   labelText: 'Usuario',
                                   suffixIconConstraints: BoxConstraints(minHeight: 20,minWidth: 20),
-                                  suffixIcon: Icon(iconUsuario, size:responsive?14:sizeicon,color:iconcolor,),
+                                  suffixIcon: Icon(iconUsuario, size:responsive?14:sizeicon,color:iconColorForm,),
                                   enabled: true,
                                 ),
                                 validator: (value) {
@@ -136,7 +90,7 @@ class _RegState extends State <Register>{
                               decoration: InputDecoration(
                                   labelText: 'Teléfono',
                                   suffixIconConstraints: BoxConstraints(minHeight: 20,minWidth: 20),
-                                  suffixIcon: Icon(iconPhone, size:responsive?14:sizeicon,color:iconcolor),
+                                  suffixIcon: Icon(iconPhone, size:responsive?14:sizeicon,color:iconColorForm),
                                   enabled: true,
                                 ),
                               validator: (value) {
@@ -154,6 +108,26 @@ class _RegState extends State <Register>{
                         ],
                       ),
                       SizedBox(height: 10,),
+                      TextFormField(
+                        controller: mail_ctrlr,
+                        decoration: InputDecoration(
+                          labelText: 'Correo Electrónico',
+                          suffixIconConstraints: BoxConstraints(minHeight: 20,minWidth: 20),
+                          suffixIcon: Icon(iconArroba, size:responsive?15:sizeicon,color:iconColorForm),
+                          enabled: true,
+                        ),
+                        validator: (value) {
+                          if(value!.length == 0){
+                            return "Ingrese su correo electrónico";
+                          }
+                          if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
+                            return ("Por favor, ingrese un correo válido.");
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      SizedBox(height: 10,),
                       responsive? Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -163,7 +137,7 @@ class _RegState extends State <Register>{
                             decoration: InputDecoration(
                               labelText: 'Contraseña',
                               suffixIcon: IconButton(
-                                icon: Icon(pwdhide1 ? Icons.visibility_off : Icons.visibility, size: sizeiconHide,color:iconcolor),
+                                icon: Icon(pwdhide1 ? Icons.visibility_off : Icons.visibility, size: sizeiconHide,color:iconColorForm),
                                 onPressed: () {
                                   setState(() {
                                       pwdhide1 = !pwdhide1;
@@ -189,7 +163,7 @@ class _RegState extends State <Register>{
                             decoration: InputDecoration(
                               labelText: 'Confirme contraseña',
                               suffixIcon: IconButton(
-                                icon: Icon(pwdhide2 ? Icons.visibility_off : Icons.visibility,size: sizeiconHide,color:iconcolor),
+                                icon: Icon(pwdhide2 ? Icons.visibility_off : Icons.visibility,size: sizeiconHide,color:iconColorForm),
                                 onPressed: () {
                                   setState(() {
                                     pwdhide2 = !pwdhide2;
@@ -221,7 +195,7 @@ class _RegState extends State <Register>{
                               decoration: InputDecoration(
                                 labelText: 'Contraseña',
                                 suffixIcon: IconButton(
-                                  icon: Icon(pwdhide1 ? Icons.visibility_off : Icons.visibility, size: sizeiconHide,color:iconcolor),
+                                  icon: Icon(pwdhide1 ? Icons.visibility_off : Icons.visibility, size: sizeiconHide,color:iconColorForm),
                                   onPressed: () {
                                     setState(() {
                                        pwdhide1 = !pwdhide1;
@@ -250,7 +224,7 @@ class _RegState extends State <Register>{
                               decoration: InputDecoration(
                                 labelText: 'Confirme contraseña',
                                 suffixIcon: IconButton(
-                                  icon: Icon(pwdhide2 ? Icons.visibility_off : Icons.visibility,size: sizeiconHide,color:iconcolor),
+                                  icon: Icon(pwdhide2 ? Icons.visibility_off : Icons.visibility,size: sizeiconHide,color:iconColorForm),
                                   onPressed: () {
                                     setState(() {
                                       pwdhide2 = !pwdhide2;
@@ -280,7 +254,7 @@ class _RegState extends State <Register>{
               SizedBox(height: 20,),
               TextButton(
                 style: TextButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255,237,39,136),
+                  backgroundColor: fucsia,
                   padding: EdgeInsets.symmetric(vertical:responsive?10.0:20.0, horizontal:50.0),
                 ),
                 onPressed: () {

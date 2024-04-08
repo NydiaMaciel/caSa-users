@@ -1,34 +1,73 @@
-import 'package:demo_casa_3/screens/data/moderadoresClass.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-String link = 'http://5.78.109.161/api/';
+String link = 'https://casa-invita.xyz/api/rp-users/';
 
 class Services{
-  //https://b5a1-2806-262-41b-aae-f8df-4dff-d0cf-53cf.ngrok-free.app/api/docs
-  getModerator(String usr, String pwd)async{
-    var url = Uri.parse(link+'moderators/');
-    var response = await http.get(url);
-    print("Response.code: ${response.statusCode}");
-    print("Response.body: ${response.body}");
-  }
   
-  Future getModerators()async{
+  /*Future getAllModerators(String token)async{
     try{
-      var url = Uri.parse(link+'moderators/');
-      var response = await http.get(url);
-      print("Response.code: ${response.statusCode}");
-      print("Response.body: ${response.body}");
-      
-      if (response.statusCode == 200) {
-        var data = jsonDecode(response.body);
-        print('data:'+data.toString());
-        print('data.type: '+data.runtimeType.toString());
-        return data;
+      var url = Uri.parse('https://casa-invita.xyz/api/moderators?limit=10&offset=0');
+      var response = await http.get(url,
+        headers: <String, String>{
+          'Authorization': 'Bearer $token',
+        },
+      );
+      print("ALL.Response.code: ${response.statusCode}");
+      if(response.statusCode==200){
+        var jsn = jsonDecode(response.body);
+        return jsn;
+      }else{
+        return '';
       }
-    }catch(e){
-      print(e);
+    }catch(e) {
+      print('ERROR: $e !!!');
+      return '';
+    }
+  }*/
+  
+  Future login(String usr, String pwd) async {
+    print(usr+' y '+pwd);
+    try {
+      var response = await http.post(
+        Uri.parse(link+'login'),
+        headers: <String, String>{
+          'accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'username=$usr&password=$pwd',
+      );
+      print('RPs: ${response.statusCode}:${response.body}');
+      if (response.statusCode == 201) {
+        var data = jsonDecode(response.body);
+        return response;
+      }else{
+        return null;
+      }
+    } catch (e) {
+      print('ERROR: $e !!!');
       return null;
     }
   }
+
+  Future getUserById(int id, String token)async{
+    try{
+      //https://casa-invita.xyz/api/rp-users/2
+      var url = Uri.parse(link+'$id');
+      var response = await http.get(url,
+        headers: <String, String>{
+          'Authorization': 'Bearer $token',
+        },);
+      print('ByID.CODE: '+response.statusCode.toString());
+      if (response.statusCode==200){
+        return response.body;
+      }else{
+        return '';
+      }
+    }catch(e) {
+      print('ERROR: $e !!!');
+      return '';
+    }
+  }
+
 }
