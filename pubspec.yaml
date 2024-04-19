@@ -43,33 +43,39 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
   - images/logo.jpeg
-  - images/iconslib/wine-bottle-blank.svg
-  - images/Carrousel/pexels1.jpg
-  - images/Carrousel/pexels2.jpg
-  - images/Carrousel/pexels3.jpg
-  - images/Carrousel/pexels4.jpg
-  - images/iconslib/check_done.png
-  - images/iconslib/check_nope.png
-  - images/codigoQR.jpeg
+  - images/no_image.png
+  - images/no_image2.png
+  
   - images/premios/regalo_2.png
   - images/premios/regalo_3.png
   - images/premios/regalo_4.png
-  - images/insignias/capture.png
-  - images/insignias/capture1.png
-  - images/insignias/capture2.png
-  - images/insignias/capture3.png
-  - images/insignias/capture4.png
-  - images/insignias/capture5.png
-  - images/insignias/capture6.png
-  - images/insignias/capture7.png
-  - images/insignias/anauyaca.png
-  - images/insignias/anauyaca.png
+
   - images/insignias/coati.png
-  - images/insignias/jaguar.png
-  - images/insignias/mantarraya.png
-  - images/insignias/tiburon.png
-  - images/insignias/tortuga.png
+  - images/insignias/anauyaca.png
   - images/insignias/tucan.png
+  - images/insignias/tortuga.png
+  - images/insignias/mantarraya.png
+  - images/insignias/jaguar.png
+  - images/insignias/tiburon.png
+  
+  - images/premios/bici.png
+  - images/premios/buceo.png
+  - images/premios/catamaran(1).png
+  - images/premios/cirqueDuSoleil.png
+  - images/premios/fiestaCasa.png
+  - images/premios/huichol.png
+  - images/premios/ikal.png
+  - images/premios/motoneta(1).png
+  - images/premios/nintendo.png
+  - images/premios/omakase(1).png
+  - images/premios/paracaidas.png
+  - images/premios/sanMiguel.png
+  - images/premios/chichenitza.png
+  - images/premios/jeep.png
+  - images/premios/donativo.png
+  - images/premios/europa.png
+  - images/premios/departamento.png
+  - images/premios/vespa.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

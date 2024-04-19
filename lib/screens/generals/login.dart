@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:casa/screens/user/rp/jugadores.dart';
+import 'package:casa/services/sessions.dart';
 import 'package:flutter/material.dart';
 import 'package:casa/services/services.dart';
 import 'package:casa/screens/generals/colores.dart';
@@ -167,7 +168,8 @@ class _LoginState extends State <Login>{
                               var json = jsonDecode(respById);
                               Jugadores rp = Jugadores.fromJson(json);
                               setState(() {
-                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>RpUser(usuario: rp)));
+                                Sesion dataSesion = Sesion(token: data['access_token'], type: data['type']);
+                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>RpUser(usuario: rp,dataSesion: dataSesion,)));
                               });
                             }else{
                               showAlertLogin();

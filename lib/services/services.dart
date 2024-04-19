@@ -50,6 +50,27 @@ class Services{
     }
   }
 
+  Future confirm_pwd(String usr, String pwd) async {
+    try {
+      var response = await http.post(
+        Uri.parse(link+'login'),
+        headers: <String, String>{
+          'accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'username=$usr&password=$pwd',
+      );
+      if (response.statusCode == 201) {
+        return true;
+      }else{
+        return false;
+      }
+    } catch (e) {
+      print('ERROR: $e !!!');
+      return false;
+    }
+  }
+
   Future getUserById(int id, String token)async{
     try{
       //https://casa-invita.xyz/api/rp-users/2
@@ -67,6 +88,33 @@ class Services{
     }catch(e) {
       print('ERROR: $e !!!');
       return '';
+    }
+  }
+
+  Future updateUser(int id, String token, String field, String value)async{
+    print(field+'='+value);
+    try{
+      var url = Uri.parse(link+'$id');
+      var response = await http.patch(url,
+        headers: <String, String>{
+          'accept': '*/*',
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $token',
+        },
+        body: jsonEncode(<String, String>{
+          field: value
+        }),
+      );
+      print('UPDATE.CODE: '+response.statusCode.toString());
+      print('UPDATE.BODY: '+response.body.toString());
+      if (response.statusCode==204){
+        return true;
+      }else{
+        return false;
+      }
+    }catch(e) {
+      print('ERROR: $e !!!');
+      return false;
     }
   }
 

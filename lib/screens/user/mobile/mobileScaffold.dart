@@ -4,23 +4,28 @@ import 'package:casa/screens/user/mobile/home.dart';
 import 'package:casa/screens/generals/icons.dart';
 import 'package:casa/screens/generals/login.dart';
 import 'package:casa/screens/user/rp/jugadores.dart';
+import 'package:casa/services/sessions.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 
-late Widget bodyPage;
-String tituloAppBar = ""; 
-Color hoverDrawerItem = Color.fromARGB(152, 209, 176, 207);
+
 
 class mobileScaffold extends StatefulWidget {
   Jugadores usuario;
-  mobileScaffold({super.key, required this.usuario});
+  Sesion dataSesion;
+  mobileScaffold({super.key, required this.usuario, required this.dataSesion});
 
   @override
   State<mobileScaffold> createState() => _mobileScaffoldState();
 }
 
 class _mobileScaffoldState extends State<mobileScaffold> {
-  Widget bodyPage = Home();
+  late Widget bodyPage = Home(usuario: widget.usuario);
+  String tituloAppBar = ""; 
+  Color hoverDrawerItem = Color.fromARGB(152, 209, 176, 207);
+  
+  
+
   @override
   Widget build(BuildContext context) {
     bool responsive = MediaQuery.of(context).size.width<1100? true:false;
@@ -57,7 +62,7 @@ class _mobileScaffoldState extends State<mobileScaffold> {
                 onTap: () {
                   setState(() {
                     tituloAppBar="";
-                    bodyPage = Home();
+                    bodyPage = Home(usuario: widget.usuario,);
                   });
                   Navigator.of(context).pop();
                 },
@@ -93,7 +98,7 @@ class _mobileScaffoldState extends State<mobileScaffold> {
                 onTap: () {
                   setState(() {
                     tituloAppBar="Preferencias";
-                    bodyPage=Settings(usuario: widget.usuario,);
+                    bodyPage=Settings(usuario: widget.usuario,dataSesion: widget.dataSesion,);
                   });
                   Navigator.of(context).pop();
                 },

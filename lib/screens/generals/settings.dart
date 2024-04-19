@@ -1,12 +1,17 @@
+import 'dart:ffi';
+
 import 'package:casa/screens/generals/icons.dart';
 import 'package:casa/screens/user/rp/jugadores.dart';
+import 'package:casa/services/services.dart';
+import 'package:casa/services/sessions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:toastification/toastification.dart';
 
 class Settings extends StatefulWidget {
   Jugadores usuario;
-  Settings({super.key, required this.usuario});
+  Sesion dataSesion;
+  Settings({super.key, required this.usuario, required this.dataSesion});
 
   @override
   State<Settings> createState() => _SettingsState();
@@ -15,6 +20,8 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   TextEditingController ctrl_nweml1 = new TextEditingController();
   TextEditingController ctrl_nweml2 = new TextEditingController();
+  TextEditingController ctrl_nwtel1 = new TextEditingController();
+  TextEditingController ctrl_nwtel2 = new TextEditingController();
   TextEditingController ctrl_nwpwd1 = new TextEditingController();
   TextEditingController ctrl_nwpwd2 = new TextEditingController();
   TextEditingController ctrl_nwusr1 = new TextEditingController();
@@ -46,15 +53,19 @@ class _SettingsState extends State<Settings> {
                     subtitle: Text(widget.usuario.userName,style: TextStyle(fontSize: 17),),
                   ),
                   ListTile(
+                    title: const Text('Teléfono', style: TextStyle(fontWeight: FontWeight.w600,)),
+                    subtitle: Text(widget.usuario.phoneNumber,style: TextStyle(fontSize: 17),),
+                  ),
+                  ListTile(
                     title: const Text('Correo electrónico', style: TextStyle(fontWeight: FontWeight.w600,)),
                     subtitle: Text(widget.usuario.email,style: TextStyle(fontSize: 17),),
                   ),
                   const SizedBox(height: 20,),
                   const Divider(),
-                  Theme(
+                  Theme(//telefono
                     data:Theme.of(context).copyWith(dividerColor: Colors.transparent),
                     child: ExpansionTile(
-                      title: const Text('Cambiar nombre de usuario', style: TextStyle(
+                      title: const Text('Cambiar número de teléfono', style: TextStyle(
                         fontWeight: FontWeight.w600,
                       )),
                       childrenPadding: EdgeInsets.zero,
@@ -64,14 +75,14 @@ class _SettingsState extends State<Settings> {
                             Container(
                               padding: EdgeInsets.zero,
                               alignment: Alignment.centerRight,
-                              width: MediaQuery.of(context).size.width*(responsive_?0.20:0.25),
+                              width: MediaQuery.of(context).size.width*(responsive_?0.20:0.1),
                               child: Text('Nuevo: ',style: TextStyle(fontSize: 17),)),
                             Container(
                               height: 35,
-                              width: MediaQuery.of(context).size.width*(responsive_?0.5:0.25),
+                              width: MediaQuery.of(context).size.width*(responsive_?0.5:0.2),
                               margin: EdgeInsets.all(5),
                               child: TextField(
-                                controller: ctrl_nwusr1,
+                                controller: ctrl_nwtel1,
                                 style: TextStyle(fontSize: 16),
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.all(5),
@@ -89,15 +100,15 @@ class _SettingsState extends State<Settings> {
                           children: [ 
                             Container(
                               alignment: Alignment.centerRight,
-                              width: MediaQuery.of(context).size.width*(responsive_?0.20:0.25),
+                              width: MediaQuery.of(context).size.width*(responsive_?0.20:0.1),
                               child: Text('Confirmar: ',style: TextStyle(fontSize: 17),)
                             ),
                             Container(
                               height: 35,
-                              width: MediaQuery.of(context).size.width*(responsive_?0.5:0.25),
+                              width: MediaQuery.of(context).size.width*(responsive_?0.5:0.2),
                               margin: EdgeInsets.all(5),
                               child: TextField(
-                                controller: ctrl_nwusr2,
+                                controller: ctrl_nwtel2,
                                 style: TextStyle(fontSize: 16),
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.all(5),
@@ -115,17 +126,26 @@ class _SettingsState extends State<Settings> {
                           alignment: Alignment.bottomRight,
                           child: FilledButton(
                             child: Text('Guardar cambios', style: TextStyle(fontSize: 17,),),
-                            onPressed: (){
-                              if(ctrl_nwusr1.text=='' && ctrl_nwusr2.text=='' ){
-                              }else if (ctrl_nwusr1.text!=ctrl_nwusr2.text){
+                            onPressed: ()async{
+                              if(ctrl_nwtel1.text=='' && ctrl_nwtel2.text=='' ){
+                              }else if (ctrl_nwtel1.text!=ctrl_nwtel2.text){
                                 setState(() {
                                   noCoincidence();
                                   
                                 });
                               }else{
-                                ctrl_nwusr1.text='';
-                                ctrl_nwusr2.text='';
-                                changesSaved();
+                                var resp = await Services().updateUser(widget.usuario.id, widget.dataSesion.token, 'phone_number',ctrl_nwtel1.text);
+                                setState(() {
+                                  if(resp==true){
+                                    widget.usuario.phoneNumber = ctrl_nwtel1.text;
+                                    ctrl_nwtel1.text='';
+                                    ctrl_nwtel2.text='';
+                                    changesSaved();
+
+                                  }else{
+                                    noCoincidence();
+                                  }
+                                });
                               }
                             }, 
                           ),
@@ -150,7 +170,7 @@ class _SettingsState extends State<Settings> {
                   fontSize: 20,
                 ),),
                 children: [
-                  Theme(
+                  Theme(//contrasena
                     data:Theme.of(context).copyWith(dividerColor: Colors.transparent),
                     child: ExpansionTile(
               
@@ -164,11 +184,11 @@ class _SettingsState extends State<Settings> {
                             Container(
                               padding: EdgeInsets.zero,
                               alignment: Alignment.centerRight,
-                              width: MediaQuery.of(context).size.width*(responsive_?0.20:0.25),
+                              width: MediaQuery.of(context).size.width*(responsive_?0.20:0.1),
                               child: Text('Nuevo: ', style: TextStyle(fontSize: 17),)),
                             Container(
                               height: 35,
-                              width: MediaQuery.of(context).size.width*(responsive_?0.5:0.25),
+                              width: MediaQuery.of(context).size.width*(responsive_?0.5:0.2),
                               margin: EdgeInsets.all(5),
                               child: TextField(
                                 controller: ctrl_nwpwd1,
@@ -189,12 +209,12 @@ class _SettingsState extends State<Settings> {
                           children: [ 
                             Container(
                               alignment: Alignment.centerRight,
-                              width: MediaQuery.of(context).size.width*(responsive_?0.20:0.25),
+                              width: MediaQuery.of(context).size.width*(responsive_?0.20:0.1),
                               child: Text('Confirmar: ',style: TextStyle(fontSize: 17),)
                             ),
                             Container(
                               height: 35,
-                              width: MediaQuery.of(context).size.width*(responsive_?0.5:0.25),
+                              width: MediaQuery.of(context).size.width*(responsive_?0.5:0.2),
                               margin: EdgeInsets.all(5),
                               child: TextField(
                                 controller: ctrl_nwpwd2,
@@ -216,14 +236,22 @@ class _SettingsState extends State<Settings> {
                           alignment: Alignment.bottomRight,
                           child: FilledButton(
                             child: Text('Guardar cambios', style: TextStyle(fontSize: 17,),),
-                            onPressed: (){
+                            onPressed: ()async{
                               if(ctrl_nwpwd1.text=='' && ctrl_nwpwd2.text=='' ){
                               }else if (ctrl_nwpwd1.text!=ctrl_nwpwd2.text){
                                 noCoincidence();
                               }else{
-                                ctrl_nwpwd1.text='';
-                                ctrl_nwpwd2.text='';
-                                changesSaved();
+                                var resp = await Services().updateUser(widget.usuario.id, widget.dataSesion.token, 'password',ctrl_nwpwd1.text);
+                                setState(() {
+                                  if(resp==true){
+                                    ctrl_nwpwd1.text='';
+                                    ctrl_nwpwd2.text='';
+                                    changesSaved();
+
+                                  }else{
+                                    noCoincidence();
+                                  }
+                                });
                               }
                             }, 
                           ),
@@ -244,7 +272,7 @@ class _SettingsState extends State<Settings> {
                             Container(
                               padding: EdgeInsets.zero,
                               alignment: Alignment.centerRight,
-                              width: MediaQuery.of(context).size.width*(responsive_?0.20:0.25),
+                              width: MediaQuery.of(context).size.width*(responsive_?0.20:0.1),
                               child: Text('Nuevo: ',style: TextStyle(fontSize: 17),)),
                             Container(
                               height: 35,
@@ -269,7 +297,7 @@ class _SettingsState extends State<Settings> {
                           children: [ 
                             Container(
                               alignment: Alignment.centerRight,
-                              width: MediaQuery.of(context).size.width*(responsive_?0.20:0.25),
+                              width: MediaQuery.of(context).size.width*(responsive_?0.20:0.1),
                               child: Text('Confirmar: ',style: TextStyle(fontSize: 17),)
                             ),
                             Container(
@@ -296,14 +324,23 @@ class _SettingsState extends State<Settings> {
                           alignment: Alignment.bottomRight,
                           child: FilledButton(
                             child: Text('Guardar cambios', style: TextStyle(fontSize: 17,),),
-                            onPressed: (){
+                            onPressed: ()async{
                               if(ctrl_nweml1.text=='' && ctrl_nweml2.text=='' ){
                               }else if (ctrl_nweml1.text!=ctrl_nweml2.text){
                                 noCoincidence();
                               }else{
-                                ctrl_nweml1.text='';
-                                ctrl_nweml2.text='';
-                                changesSaved();
+                                var resp = await Services().updateUser(widget.usuario.id, widget.dataSesion.token, 'email',ctrl_nweml1.text);
+                                setState(() {
+                                  if(resp==true){
+                                    widget.usuario.email = ctrl_nweml1.text;
+                                    ctrl_nweml1.text='';
+                                    ctrl_nweml2.text='';
+                                    changesSaved();
+
+                                  }else{
+                                    noCoincidence();
+                                  }
+                                });
                               }
                             }, 
                           ),

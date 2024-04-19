@@ -9,12 +9,12 @@ List<Jugadores> jugadoresFromJson(String str) => List<Jugadores>.from(json.decod
 String jugadoresToJson(List<Jugadores> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Jugadores {
-    final int id;
-    final String userName;
-    final String email;
-    final int totalClientsReferred;
-    final String phoneNumber;
-    final String qrCode;
+    int id;
+    String userName;
+    String email;
+    int totalClientsReferred;
+    String phoneNumber;
+    String qrCode;
 
     Jugadores({
         required this.id,

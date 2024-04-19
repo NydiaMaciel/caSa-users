@@ -4,65 +4,47 @@ import 'package:timeline_tile/timeline_tile.dart';
 
 
 class MyTimeLineTile extends StatelessWidget {
-  final bool isFirst;
-  final bool isLast;
-  final bool isPast;
-  final String titleEvent;
-  final String descriptionEvent;
-  final int pointsEvent;
+  String titleEvent;
+  String descriptionEvent;
+  int pointsEvent;
+  String img;
+  bool isFirst;
+  bool isLast;
+  bool isPast;
 
   MyTimeLineTile({
     super.key, 
     required this.titleEvent, 
     required this.descriptionEvent, 
     required this.pointsEvent, 
-    required this.isFirst, 
-    required this.isLast,
-    required this.isPast, 
+    this.isFirst = false,
+    this.isLast = false,
+    this.isPast = false,
+    this.img = 'images/no_image2.png'
   });
-
-  const MyTimeLineTile.sinfirst({
-    super.key,
-    required this.titleEvent, 
-    required this.descriptionEvent, 
-    required this.pointsEvent,
-    required this.isLast,
-
-    required this.isPast,
-  }):isFirst=false;
-  
-  const MyTimeLineTile.sinlast({
-    super.key,
-    required this.titleEvent, 
-    required this.descriptionEvent, 
-    required this.pointsEvent,
-    required this.isFirst,
-
-    required this.isPast,
-  }):isLast=false;
-  //MyTimeLineTile.origin(): isFirst=first, isLast=last;
 
   @override
   Widget build(BuildContext context) {
     bool responsive = MediaQuery.of(context).size.width>1100?true:false;
     return Container(
-      height: responsive?150:200, //espacio entre eventos
+      height: 150, //espacio entre eventos
       child: TimelineTile(
         isFirst: isFirst,
         isLast: isLast,
         beforeLineStyle: LineStyle(
           thickness: 6.5,
-          color: isPast? Color.fromARGB(255, 145, 98, 151): Color.fromARGB(255, 190, 165, 194),
+          color: isPast? Color.fromARGB(255, 174, 157, 87): Color.fromARGB(255, 179, 173, 145),
         ),
         indicatorStyle: IndicatorStyle(
-          width: 25,
-          color: isPast? Color.fromARGB(255, 145, 98, 151): Color.fromARGB(255, 190, 165, 194),
+          width: 30,
+          color: isPast? Color.fromARGB(255, 218, 175, 0): Color.fromARGB(255, 179, 173, 145),
           iconStyle: IconStyle(
             iconData: Icons.done,
-            color: isPast? Colors.white: Color.fromARGB(255, 190, 165, 194), fontSize: 20,
+            color: isPast? Color.fromARGB(255, 66, 52, 0): Color.fromARGB(255, 179, 173, 145), 
+            fontSize: 22,
           ),
         ),
-        endChild: EventCard(titleEvent_: titleEvent, descriptionEvent_: descriptionEvent, pointsEvent_:pointsEvent, past: isPast,),
+        endChild: EventCard(titleEvent_: titleEvent, descriptionEvent_: descriptionEvent, pointsEvent_:pointsEvent, past: isPast,img: img,),
       ),
     );
   }

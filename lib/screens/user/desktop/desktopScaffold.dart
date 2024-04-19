@@ -1,132 +1,179 @@
+import 'package:casa/screens/generals/colores.dart';
 import 'package:casa/screens/generals/icons.dart';
 import 'package:casa/screens/generals/login.dart';
 import 'package:casa/screens/generals/settings.dart';
+import 'package:casa/screens/user/desktop/settingsLayout.dart';
 import 'package:casa/screens/user/mobile/codigoQR.dart';
 import 'package:casa/screens/user/desktop/home.dart';
 import 'package:casa/screens/user/rp/jugadores.dart';
+import 'package:casa/services/sessions.dart';
 import 'package:flutter/material.dart';
 
 class DesktopScaffold extends StatefulWidget {
   Jugadores usuario;
-  DesktopScaffold({super.key,required this.usuario});
+  Sesion dataSesion;
+  DesktopScaffold({super.key,required this.usuario,required this.dataSesion});
 
   @override
   State<DesktopScaffold> createState() => _DesktopScaffoldState();
 }
 
 class _DesktopScaffoldState extends State<DesktopScaffold> {
-  var selectedPage = 0;
-  static const int caseCerrarSesion = 4;
-  TextStyle LabelStyle = TextStyle(fontWeight: FontWeight.w400);
-  Color destinationIcon = Color.fromARGB(255, 33, 122, 112);
-  Color destinationIconSelected = Colors.black;
+  int selectedPage = 0;
+  Color normalColorDrawer = color1;
+  Color selectedColorText = color19;
+  Color selectedColorBG = color23;
+  late Widget screen = Home(usuario: widget.usuario,);
+  double drawerSize = 230;
+  
   @override
-  Widget build (BuildContext context){
+  Widget build (BuildContext context){    
     Widget page = Placeholder();
-
-    switch (selectedPage){
-      case 0: //HOME
-        page = Home();
-        break;
-      case 1://MI PROGRESO
-        page= Placeholder();
-        break;
-      case 2://QR
-        page = myQR(usuario: widget.usuario,);
-        break;
-      case 3://PREFERENCIAS
-        page= Settings(usuario: widget.usuario,);
-        break;
-      case caseCerrarSesion://CERRAR SESION
-        //page = Login();
-        break;
-      default:
-        throw UnimplementedError('no widget for $selectedPage');
-    }
 
     return LayoutBuilder(
       builder: (context, constraints){
         return Scaffold(
-          body: Row(
-            children: [
-              SafeArea(
-                child: 
-                NavigationRail (
-                  labelType: NavigationRailLabelType.all,
-                  //extended: constraints.maxWidth >= 1200,
-                  //minWidth: 70,
-                  destinations: [
-                    NavigationRailDestination(
-                      icon: Icon(iconHome,color:destinationIcon),
-                      selectedIcon: Icon(iconHome,color:destinationIconSelected),
-                      label: Text('Inicio',style: LabelStyle),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(iconBolt,color:destinationIcon), 
-                      selectedIcon: Icon(iconBolt,color:destinationIconSelected),
-                      label: Text('Mi progreso',style: LabelStyle),
-                    ),
-                    
-                    NavigationRailDestination(
-                      icon: Icon(iconScanQR,color:destinationIcon), 
-                      selectedIcon: Icon(iconScanQR,color:destinationIconSelected),
-                      label: Text('Mi QR',style: LabelStyle),
-                      disabled: false,  // administrar permisos de mods
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(iconSettings,color:destinationIcon),
-                      selectedIcon: Icon(iconSettings,color:destinationIconSelected), 
-                      label: Text('Preferencias',style: LabelStyle),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(iconSalir,color:destinationIcon), 
-                      selectedIcon: Icon(iconSalir,color:destinationIconSelected), 
-                      label: Text('Cerrar Sesión',style: LabelStyle),
-                    ),
+          body: Container(
+            color: color6,
+            height: MediaQuery.of(context).size.height,
+            child: Row(
+              children: [
+                Drawer(
+                  width: drawerSize,
+                  backgroundColor: appBarcolor,
+                  shape: const Border(
+                    bottom: BorderSide.none,
+                    right: BorderSide.none,
+                    left: BorderSide.none,
+                    top: BorderSide.none,
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 90,
+                        color: Colors.white,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(width: 10),
+                            Icon(iconUsuario, color: color6,),
+                            SizedBox(width: 10,),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(widget.usuario.userName,style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15,
+                                  color: color6,
+                                ),),
+                                SizedBox(height: 3),
+                                Text(widget.usuario.email,style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 12,
+                                  color: color6,
+                                ),),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+            
+                      ListTile(
+                        leading: Icon(iconHome,color: selectedPage==0? selectedColorText:normalColorDrawer,),
+                        hoverColor: appBarcolor3,
+                        tileColor: selectedPage==0?selectedColorBG:appBarcolor,
+                        title: Text('Inicio', style: TextStyle(
+                          color: selectedPage==0? selectedColorText:normalColorDrawer,
+                        ),),
+                        onTap: (){
+                          setState(() {
+                            selectedPage=0;
+                            screen= Home(usuario: widget.usuario);
+                          });
+                        },
+                      ),
+                      ListTile(
+                        leading: Icon(iconScanQR,color: selectedPage==2? selectedColorText:normalColorDrawer,),
+                        hoverColor: appBarcolor3,
+                        tileColor: selectedPage==2?selectedColorBG:appBarcolor2,
+                        title: Text('Código QR',style: TextStyle(
+                          color: selectedPage==2? selectedColorText:normalColorDrawer,
+                        ),),
+                        onTap: (){
+                          setState(() {
+                            selectedPage=2;
+                            screen= myQR(usuario: widget.usuario,);
+                          });
+                        },
+                      ),
+                      ListTile(
+                        leading: Icon(iconSettings,color: selectedPage==4? selectedColorText:normalColorDrawer,),
+                        hoverColor: appBarcolor3,
+                        tileColor: selectedPage==4?selectedColorBG:appBarcolor2,
+                        title: Text('Preferencias',style: TextStyle(
+                          color: selectedPage==4? selectedColorText:normalColorDrawer,
+                        ),),
+                        onTap: (){
+                          setState(() {
+                            selectedPage=4;
+                            screen = SetingsLayout(usuario: widget.usuario, dataSesion: widget.dataSesion);
+                          });
+                        },
+                      ),
+                      ListTile(
+                        leading: Icon(iconSalir,color: selectedPage==5? selectedColorText:normalColorDrawer,),
+                        hoverColor: appBarcolor3,
+                        tileColor: selectedPage==5?selectedColorBG:appBarcolor2,
+                        title: Text('Salir',style: TextStyle(
+                          color: selectedPage==5? selectedColorText:normalColorDrawer,
+                        ),),
+                        onTap: (){
+                          setState(() {
+                            selectedPage=5;
+                            showDialog(context: context, 
+                              builder: (_)=> AlertDialog(
+                                title: const Text('Cerrar Sesión'),
+                                content: const Text('¿Está seguro que desea cerrar la sesión?'),
+                                actions: <Widget>[
+                                  TextButton(
+                                    child: const Text('Confirmar',style: TextStyle(color: Colors.white),),
+                                    style: ButtonStyle(backgroundColor: MaterialStateProperty.all(color6)),
+                                    onPressed: (){
+                                      //Navigator.pop(context, 'OK');
+                                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Login()));
+                                    },
+                                  ),
+                                  TextButton(
+                                    child: const Text('Cancelar',style: TextStyle(color: Colors.black),),
+                                    onPressed: (){
+                                      //Navigator.pop(context, 'Cancel');
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              ),
+                            );
+                          });
+                        },
+                      ),
+            
+                    ]
+                  ),
+                ),
+                //BODY
+                Column(
+                  children:[
+                    Container(
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width-drawerSize,
+                      child: screen,
+                    )
                   ],
-                  selectedIndex: selectedPage,
-                  onDestinationSelected: (value) {
-                    setState(() {
-                      var anterior = selectedPage;
-                      selectedPage = value;
-                      if (value==caseCerrarSesion){
-                        selectedPage=anterior;
-                        showDialog(context: context, 
-                          builder: (_)=> AlertDialog(
-                            title: const Text('Cerrar Sesión'),
-                            content: const Text('¿Está seguro que desea cerrar la sesión?'),
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: (){
-                                  Navigator.pop(context, 'Cancel');
-                                  setState(() {
-                                    selectedPage = anterior;
-                                  });
-                                },
-                                child: const Text('Cancelar'),
-                              ),
-                              TextButton(
-                                onPressed: (){
-                                  Navigator.pop(context, 'OK');
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Login()));
-                                },
-                                child: const Text('Si'),
-                              ),
-                            ],
-                          ),
-                        );
-                      }
-                    });
-                  },                  
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  color: const Color.fromARGB(255, 230,204,179),
-                  child: page,
-                ),
-              ),
-            ],
+                ),  
+              ]
+            ),
           ),
         );
       },
