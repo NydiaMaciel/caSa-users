@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:casa/screens/generals/icons.dart';
 import 'package:casa/screens/user/rp/jugadores.dart';

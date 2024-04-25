@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Evento{
 
   List<int> bolet = [111,222,333,444,555,666,777,888,999,2500,5000,10000,25000,50000,75000,100000,150000];

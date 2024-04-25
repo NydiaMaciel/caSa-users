@@ -43,9 +43,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     double done = getDone();
-    double altoContainer = MediaQuery.of(context).size.height*0.60;
-    double alto = 120;
-    double margen = 15;
     return Scaffold(
       body: Container(
         //color: Colors.grey,
@@ -209,11 +206,9 @@ class _HomeState extends State<Home> {
       if(puntosGlobal/index>1.0){
         done_=done_+1.0;
       }else{
-        print('done: '+done_.toString());
         return done_;
       }
     }
-    print('done: '+done_.toString());
     return done_;
   }
 

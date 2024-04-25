@@ -1,33 +1,39 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
+//             https://casa-invita.xyz/api/rp-users
 String link = 'https://casa-invita.xyz/api/rp-users/';
 
 class Services{
   
-  /*Future getAllModerators(String token)async{
+  Future create(String name, String email, String pswd, String phone)async{
+    print('NAME:$name');
     try{
-      var url = Uri.parse('https://casa-invita.xyz/api/moderators?limit=10&offset=0');
-      var response = await http.get(url,
+      var url = Uri.parse('https://casa-invita.xyz/api/rp-users');
+      var response = await http.post(url,
         headers: <String, String>{
-          'Authorization': 'Bearer $token',
+          'accept': 'application/json',
+          'Content-Type': 'application/json',
         },
+        body: jsonEncode(<String, String>{
+            "user_name": name,
+            "email": email,
+            "password": pswd,
+            "phone_number": phone
+        }),
       );
-      print("ALL.Response.code: ${response.statusCode}");
-      if(response.statusCode==200){
-        var jsn = jsonDecode(response.body);
-        return jsn;
+      print('register:'+response.statusCode.toString());
+      if(response.statusCode==201){
+        return true;
       }else{
-        return '';
+        return false;
       }
-    }catch(e) {
+    }catch(e){
       print('ERROR: $e !!!');
-      return '';
+      return false;
     }
-  }*/
+  }
   
   Future login(String usr, String pwd) async {
-    print(usr+' y '+pwd);
     try {
       var response = await http.post(
         Uri.parse(link+'login'),
@@ -92,7 +98,6 @@ class Services{
   }
 
   Future updateUser(int id, String token, String field, String value)async{
-    print(field+'='+value);
     try{
       var url = Uri.parse(link+'$id');
       var response = await http.patch(url,

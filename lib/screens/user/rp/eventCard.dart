@@ -17,9 +17,6 @@ class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool responsive = MediaQuery.of(context).size.width>1100?true:false;
-    double Mdwidth= MediaQuery.of(context).size.width;
-    double MdHeight= MediaQuery.of(context).size.height;
     return Container(
       margin: EdgeInsets.all(15),
       

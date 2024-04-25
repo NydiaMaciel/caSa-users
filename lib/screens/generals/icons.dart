@@ -1,6 +1,5 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 IconData iconHome = Icons.home;
 IconData iconHome2 = Icons.home_outlined;

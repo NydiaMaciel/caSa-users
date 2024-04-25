@@ -1,7 +1,13 @@
+import 'dart:io';
+
 import 'package:casa/screens/generals/colores.dart';
 import 'package:casa/screens/generals/icons.dart';
+import 'package:casa/services/services.dart';
 import 'package:flutter/material.dart';
 import 'login.dart';
+import 'package:toastification/toastification.dart';
+import 'package:email_validator/email_validator.dart';
+
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -11,22 +17,24 @@ class Register extends StatefulWidget {
 }
 
 class _RegState extends State <Register>{
+  bool errorPwd = false;
+  bool errorEml = false;
+  bool errorPhn = false;
 
   bool pwdhide1 = true;
   bool pwdhide2 = true;
 
-  final TextEditingController name_ctrlr = new TextEditingController();
-  final TextEditingController mail_ctrlr = new TextEditingController();
-  final TextEditingController user_ctrlr = new TextEditingController();
-  final TextEditingController ntel_ctrlr = new TextEditingController();
-  final TextEditingController pwd1_ctrlr = new TextEditingController();
-  final TextEditingController pwd2_ctrlr = new TextEditingController();
-  final TextEditingController type_ctrlr = new TextEditingController();
+  TextEditingController mail_ctrlr = new TextEditingController();
+  TextEditingController user_ctrlr = new TextEditingController();
+  TextEditingController ntel_ctrlr = new TextEditingController();
+  TextEditingController pwd1_ctrlr = new TextEditingController();
+  TextEditingController pwd2_ctrlr = new TextEditingController();
+  TextEditingController type_ctrlr = new TextEditingController();
+
   @override
   Widget build (BuildContext context){
   double sizeicon = 15;
   double sizeiconHide = 20.0;
-
   bool responsive = MediaQuery.of(context).size.width<1100;
 
     return Scaffold(
@@ -65,6 +73,7 @@ class _RegState extends State <Register>{
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
                             width: responsive? MediaQuery.of(context).size.width*0.40:MediaQuery.of(context).size.width/3*0.50,//MediaQuery.of(context).size.width/3*0.50,
@@ -83,48 +92,44 @@ class _RegState extends State <Register>{
                               },
                             ),
                           ),
-                          SizedBox(
+                          Container(
                             width: responsive? MediaQuery.of(context).size.width*0.40:MediaQuery.of(context).size.width/3*0.50,//MediaQuery.of(context).size.width/3*0.50,,
+                            height: errorPhn?80:null,
                             child: TextFormField(
                               controller: ntel_ctrlr,
+                              keyboardType: TextInputType.phone,
                               decoration: InputDecoration(
+                                
                                   labelText: 'Teléfono',
+                                  errorText: errorPhn? 'Número inválido': null,
                                   suffixIconConstraints: BoxConstraints(minHeight: 20,minWidth: 20),
                                   suffixIcon: Icon(iconPhone, size:responsive?14:sizeicon,color:iconColorForm),
                                   enabled: true,
                                 ),
-                              validator: (value) {
-                                if(value!.length == 0){
-                                  return "Ingrese un número telefónico";
-                                }
-                                if (!RegExp("^(?:[+0]9)?[0-9]{10}").hasMatch(value)) {
-                                  return ("Por favor, ingrese un número válido.");
-                                } else {
-                                  return null;
-                                }
+                              onChanged: (value) {
+                                setState(() {
+                                  errorPhn = (!RegExp(r'^[0-9]*$').hasMatch(ntel_ctrlr.text) || value.length>10)? true:false;
+                                });
                               },
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: 10,),
                       TextFormField(
                         controller: mail_ctrlr,
+                        keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                           labelText: 'Correo Electrónico',
+                          errorText: errorEml? 'Formato de correo electrónico inválido':null,
                           suffixIconConstraints: BoxConstraints(minHeight: 20,minWidth: 20),
                           suffixIcon: Icon(iconArroba, size:responsive?15:sizeicon,color:iconColorForm),
                           enabled: true,
                         ),
-                        validator: (value) {
-                          if(value!.length == 0){
-                            return "Ingrese su correo electrónico";
-                          }
-                          if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
-                            return ("Por favor, ingrese un correo válido.");
-                          } else {
-                            return null;
-                          }
+                        onChanged: (value) {
+                          setState(() {
+                            errorEml = !EmailValidator.validate(mail_ctrlr.text) && value.length!=0? true:false;
+
+                          });
                         },
                       ),
                       SizedBox(height: 10,),
@@ -145,23 +150,18 @@ class _RegState extends State <Register>{
                                 },
                               ),
                             ),
-                            validator: (value) {
-                              RegExp regex = new RegExp(r'^.{6,}$');
-                              if (value!.isEmpty){
-                                return "Ingrese la contraseña.";
-                              }
-                              if (!regex.hasMatch(value)) {
-                                return ("Por favor, ingrese una contraseña minimo de 6 caracteres.");
-                              } else {
-                                return null;
-                              }
-                            },
+                            onChanged: (value) {
+                                setState(() {
+                                  errorPwd = pwd1_ctrlr.text!=pwd2_ctrlr.text? true:false;
+                                });
+                              },
                           ),
                           TextFormField(
                             obscureText: pwdhide2,
                             controller: pwd2_ctrlr,
                             decoration: InputDecoration(
                               labelText: 'Confirme contraseña',
+                              errorText: errorPwd? 'Las contraseñas no coinciden': null,
                               suffixIcon: IconButton(
                                 icon: Icon(pwdhide2 ? Icons.visibility_off : Icons.visibility,size: sizeiconHide,color:iconColorForm),
                                 onPressed: () {
@@ -172,22 +172,18 @@ class _RegState extends State <Register>{
                               ),
                               enabled: true,
                             ),
-                            validator: (value) {
-                              if (value!.isEmpty){
-                                return "Ingrese la contraseña.";
-                              }
-                              if (pwd2_ctrlr.value != pwd1_ctrlr.value) {
-                                return ("Las contraseñas no coinciden, inténtalo de nuevo.");
-                              } else {
-                                return null;
-                              }
-                            },
+                            onChanged: (value) {
+                                setState(() {
+                                  errorPwd = pwd1_ctrlr.text!=pwd2_ctrlr.text? true:false;
+                                });
+                              },
                           ),
                         ],
                       ):Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
+                          Container(
                             width: MediaQuery.of(context).size.width/3*0.50,
                             child: TextFormField(
                               obscureText: pwdhide1,
@@ -203,26 +199,23 @@ class _RegState extends State <Register>{
                                   },
                                 ),
                               ),
-                              validator: (value) {
-                                RegExp regex = new RegExp(r'^.{6,}$');
-                                if (value!.isEmpty){
-                                  return "Ingrese la contraseña.";
-                                }
-                                if (!regex.hasMatch(value)) {
-                                  return ("Por favor, ingrese una contraseña minimo de 6 caracteres.");
-                                } else {
-                                  return null;
-                                }
+                              onChanged: (value) {
+                                setState(() {
+                                  errorPwd = pwd1_ctrlr.text!=pwd2_ctrlr.text? true:false;
+                                });
                               },
                             ),
                           ),
-                          SizedBox(
+                          Container(
                             width: MediaQuery.of(context).size.width/3*0.50,
+                            height: errorPwd? 80:null,
+                            alignment: Alignment.topCenter,
                             child: TextFormField(
                               obscureText: pwdhide2,
                               controller: pwd2_ctrlr,
                               decoration: InputDecoration(
                                 labelText: 'Confirme contraseña',
+                                errorText: errorPwd? 'Las contraseñas no coinciden': null,
                                 suffixIcon: IconButton(
                                   icon: Icon(pwdhide2 ? Icons.visibility_off : Icons.visibility,size: sizeiconHide,color:iconColorForm),
                                   onPressed: () {
@@ -233,15 +226,10 @@ class _RegState extends State <Register>{
                                 ),
                                 enabled: true,
                               ),
-                              validator: (value) {
-                                if (value!.isEmpty){
-                                  return "Ingrese la contraseña.";
-                                }
-                                if (pwd2_ctrlr.value != pwd1_ctrlr.value) {
-                                  return ("Las contraseñas no coinciden, inténtalo de nuevo.");
-                                } else {
-                                  return null;
-                                }
+                              onChanged: (value) {
+                                setState(() {
+                                  errorPwd = pwd1_ctrlr.text!=pwd2_ctrlr.text? true:false;
+                                });
                               },
                             ),
                           ),
@@ -257,8 +245,19 @@ class _RegState extends State <Register>{
                   backgroundColor: fucsia,
                   padding: EdgeInsets.symmetric(vertical:responsive?10.0:20.0, horizontal:50.0),
                 ),
-                onPressed: () {
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Login()));
+                onPressed: ()async{
+
+                  var response = await Services().create(user_ctrlr.text, mail_ctrlr.text, pwd1_ctrlr.text, ntel_ctrlr.text);
+                  if(response == true){
+                    registerDone();
+                    sleep(Duration(milliseconds: 5));
+                    setState(() {
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Login()));
+                    });
+                  }else{
+                    registerError();
+                    sleep(Duration(milliseconds: 5));
+                  }
                 },  
                 child: const Text('Registrar', style: TextStyle(
                   color: Colors.white,
@@ -280,4 +279,50 @@ class _RegState extends State <Register>{
       ),
     );
   }
+
+  void registerError(){
+    toastification.show(
+      context: context,
+      type: ToastificationType.error,
+      style: ToastificationStyle.flatColored,
+      title: Text('Falló el registro',style: TextStyle(fontSize: 18),),
+      description: Text('El usuario ${user_ctrlr.text} no ha podido ser registrado. Es posible que el nombre de usuario ya exista!',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 16),),
+      alignment: Alignment.topCenter,
+      autoCloseDuration: const Duration(seconds: 4),
+      borderRadius: BorderRadius.circular(12.0),
+      boxShadow: highModeShadow,
+      showProgressBar: false,
+    );
+  }
+
+  void registerDone(){
+    toastification.show(
+      context: context,
+      type: ToastificationType.success,
+      style: ToastificationStyle.flatColored,
+      title: Text('Registro exitoso',style: TextStyle(fontSize: 18),),
+      description: Text('El usuario ${user_ctrlr.text} fue registrado de manera exitosa.',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 16),),
+      alignment: Alignment.topCenter,
+      autoCloseDuration: const Duration(seconds: 4),
+      borderRadius: BorderRadius.circular(12.0),
+      boxShadow: highModeShadow,
+      showProgressBar: false,
+    );
+  }
+
+  void noCoincidence(){
+    toastification.show(
+      context: context,
+      type: ToastificationType.warning,
+      style: ToastificationStyle.flatColored,
+      alignment: Alignment.topCenter,
+      autoCloseDuration: const Duration(seconds: 4),
+      borderRadius: BorderRadius.circular(12.0),
+      boxShadow: highModeShadow,
+      showProgressBar: false,
+      title: Text('Fallo de confirmación ',style: TextStyle(fontSize: 18),),
+      description: Text('Las contraseñas no coinciden, ¡vuelva a escribirlas por favor!',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 16),),
+    );
+  }
+
 }

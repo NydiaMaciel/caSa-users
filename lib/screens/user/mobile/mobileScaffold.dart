@@ -1,5 +1,5 @@
 import 'package:casa/screens/generals/settings.dart';
-import 'package:casa/screens/user/mobile/codigoQR.dart';
+import 'package:casa/screens/user/rp/codigoQR.dart';
 import 'package:casa/screens/user/mobile/home.dart';
 import 'package:casa/screens/generals/icons.dart';
 import 'package:casa/screens/generals/login.dart';
@@ -28,7 +28,6 @@ class _mobileScaffoldState extends State<mobileScaffold> {
 
   @override
   Widget build(BuildContext context) {
-    bool responsive = MediaQuery.of(context).size.width<1100? true:false;
     return Scaffold(
       appBar: AppBar(title: Text(tituloAppBar),backgroundColor: const Color.fromARGB(0, 82, 198, 188),),
       backgroundColor: Color.fromARGB(255,143,216,196),

@@ -1,9 +1,8 @@
 import 'package:casa/screens/generals/colores.dart';
 import 'package:casa/screens/generals/icons.dart';
 import 'package:casa/screens/generals/login.dart';
-import 'package:casa/screens/generals/settings.dart';
 import 'package:casa/screens/user/desktop/settingsLayout.dart';
-import 'package:casa/screens/user/mobile/codigoQR.dart';
+import 'package:casa/screens/user/rp/codigoQR.dart';
 import 'package:casa/screens/user/desktop/home.dart';
 import 'package:casa/screens/user/rp/jugadores.dart';
 import 'package:casa/services/sessions.dart';
@@ -27,8 +26,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
   double drawerSize = 230;
   
   @override
-  Widget build (BuildContext context){    
-    Widget page = Placeholder();
+  Widget build (BuildContext context){
 
     return LayoutBuilder(
       builder: (context, constraints){

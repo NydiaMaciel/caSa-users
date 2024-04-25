@@ -1,7 +1,5 @@
 import 'package:casa/screens/user/rp/evento.dart';
 import 'package:casa/screens/user/rp/jugadores.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:casa/screens/generals/icons.dart';
 import 'package:casa/screens/user/mobile/tienda.dart';
 import 'package:casa/screens/user/rp/timelinetileClass.dart';
@@ -44,9 +42,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     double done = getDone();
-    double altoContainer = MediaQuery.of(context).size.height*0.60;
-    double alto = 120;
-    double margen = 15;
     return Scaffold(
       body: Container(
         //color: Colors.grey,
@@ -112,10 +107,10 @@ class _HomeState extends State<Home> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [ 
-                Container(
+                Container(//linetime
                   height: MediaQuery.of(context).size.height*0.9,
                   width: 500,
-                  child: //linetime
+                  child: 
                   Flexible(
                     child: Container(
                       padding: EdgeInsets.only(left: 15),
@@ -144,7 +139,7 @@ class _HomeState extends State<Home> {
                 ),
                 //bott
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(7),
                   height: MediaQuery.of(context).size.height*0.44,
                   width: MediaQuery.of(context).size.width*0.2,
                   color:Color.fromARGB(100, 131, 117, 24),
@@ -218,11 +213,9 @@ class _HomeState extends State<Home> {
       if(puntosGlobal/index>1.0){
         done_=done_+1.0;
       }else{
-        print('done: '+done_.toString());
         return done_;
       }
     }
-    print('done: '+done_.toString());
     return done_;
   }
 }
