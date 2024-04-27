@@ -1,3 +1,5 @@
+import 'dart:js_interop_unsafe';
+
 import 'package:casa/screens/generals/colores.dart';
 import 'package:casa/screens/generals/icons.dart';
 import 'package:casa/screens/generals/login.dart';
@@ -137,16 +139,19 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                 actions: <Widget>[
                                   TextButton(
                                     child: const Text('Confirmar',style: TextStyle(color: Colors.white),),
-                                    style: ButtonStyle(backgroundColor: MaterialStateProperty.all(color6)),
+                                    style: ButtonStyle(
+                                      backgroundColor: MaterialStateProperty.all(color6),
+                                    ),
                                     onPressed: (){
-                                      //Navigator.pop(context, 'OK');
                                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Login()));
                                     },
                                   ),
                                   TextButton(
                                     child: const Text('Cancelar',style: TextStyle(color: Colors.black),),
+                                    style: ButtonStyle(
+                                      backgroundColor: MaterialStateProperty.all(color11),
+                                    ),
                                     onPressed: (){
-                                      //Navigator.pop(context, 'Cancel');
                                       Navigator.of(context).pop();
                                     },
                                   ),

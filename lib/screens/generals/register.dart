@@ -280,7 +280,7 @@ class _RegState extends State <Register>{
                     sleep(Duration(milliseconds: 5));
                   }
                 },  
-                child: const Text('Registrar', style: TextStyle(
+                child: const Text('registrar', style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
                   fontFamily: 'Wenstern',
@@ -288,7 +288,7 @@ class _RegState extends State <Register>{
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(height: 15,),
               TextButton(
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.grey[700],
@@ -299,11 +299,11 @@ class _RegState extends State <Register>{
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Login()));
                   });
                 },  
-                child: const Text('Cancelar', style: TextStyle(
+                child: const Text('cancelar', style: TextStyle(
                   color: Colors.white,
-                  fontSize: 17,
+                  fontSize: 15,
                   fontFamily: 'Wenstern',
-                  fontWeight: FontWeight.w500
+                  fontWeight: FontWeight.w600
                   ),
                 ),
               ),

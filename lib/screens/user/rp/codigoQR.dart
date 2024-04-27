@@ -28,10 +28,10 @@ class myQR extends StatelessWidget {
       floatingActionButton:Stack(
         children: [
           Positioned(
-            bottom: 70.0, // Ajusta según sea necesario
+            bottom: 80.0, // Ajusta según sea necesario
             right: 10.0, // Ajusta según sea necesario
             child: FloatingActionButton(
-              child: Icon(Icons.download,color: Colors.white, size: 20,),
+              child: Icon(Icons.download,color: Colors.white, size: 25,),
               onPressed: () {
                 downloadQR();
               },

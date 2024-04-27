@@ -18,6 +18,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State <Login>{
   TextEditingController user = new TextEditingController();
   TextEditingController pswd = new TextEditingController();
+  bool hide = true;
 
   @override
   Widget build (BuildContext context){
@@ -93,37 +94,28 @@ class _LoginState extends State <Login>{
                           suffixIcon: Icon(iconUsuario, size:sizeicon,color: iconColorForm,),
                           //
                         ),
-                        validator: (value) {
-                          if(value!.length == 0){
-                            return "Ingrese su nombre de usuario";
-                          }
-                        },
-                        onChanged: (value){},
                         keyboardType: TextInputType.name,
                       ),
                       SizedBox(height: 10,),
                       TextFormField(
-                        obscureText: false,
+                        obscureText: hide,
                         controller: pswd,
                         cursorColor: color1,
-                        cursorHeight: 23,
+                        cursorHeight: 25,
                         cursorWidth: 1.0,
                         decoration: InputDecoration(
                           labelText: 'Contraseña',
                           enabled: true,
-                          suffixIcon: Icon(iconPassword, size:sizeicon,color: iconColorForm,),
+                          suffixIcon: IconButton(
+                            icon: Icon(hide? Icons.visibility_off : Icons.visibility, size:20,color: iconColorForm,),
+                            onPressed: (){
+                              setState(() {
+                                hide = !hide;
+                              });
+                            }, 
+                          ),
                         ),
-                        validator: (value) {
-                          RegExp regex = new RegExp(r'^.{6,}$');
-                          if (value!.isEmpty){
-                            return "Ingrese la contraseña.";
-                          }
-                          if (!regex.hasMatch(value)) {
-                            return ("Por favor, ingrese una contraseña minimo de 6 caracteres.");
-                          } else {
-                            return null;
-                          }
-                        },
+                        
                       ),
                       SizedBox(height: responsive_?15:5,),
                       GestureDetector(
@@ -226,11 +218,12 @@ class _LoginState extends State <Login>{
       context: context, 
       builder: (BuildContext context){
         return AlertDialog(
-          insetPadding: EdgeInsets.all(20),
+          insetPadding: EdgeInsets.zero,
           content: StatefulBuilder(
             builder: (BuildContext contex, StateSetter setState){
               return Container(
-                height:50,
+                margin: EdgeInsets.zero,
+                height: 55,
                 child: const Column(
                   children: [
                     Text('Error de inicio de sesión',
@@ -239,7 +232,8 @@ class _LoginState extends State <Login>{
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text('No se encontró el usuario',
+                    SizedBox(height: 10,),
+                    Text('No se pudo iniciar sesión, verifique el usuario y contraseña.',
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w400,
@@ -253,11 +247,11 @@ class _LoginState extends State <Login>{
           actions: [
           FilledButton(
             child: Text('Aceptar'),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(color6),
+            ),
             onPressed: (){
               setState(() {
-                //limpia variables
-                user.text="";
-                pswd.text="";
                 Navigator.of(context).pop();
               });
             }, 

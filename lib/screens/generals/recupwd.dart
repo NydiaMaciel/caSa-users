@@ -111,6 +111,25 @@ class _RecupState extends State <Recup>{
                   ),
                 ),
               ),
+              SizedBox(height: 15,),
+              TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.grey[700],
+                  padding: EdgeInsets.symmetric(vertical:responsive_?5.0:10.0, horizontal:30.0),
+                ),
+                onPressed: ()async{
+                  setState(() {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Login()));
+                  });
+                },  
+                child: const Text('cancelar', style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontFamily: 'Wenstern',
+                  fontWeight: FontWeight.w600
+                  ),
+                ),
+              ),
             ],
           ), 
           

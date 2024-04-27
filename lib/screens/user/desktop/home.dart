@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
     double done = getDone();
     return Scaffold(
       body: Container(
-        color: Colors.white,
+        color: const Color.fromARGB(255, 225, 225, 225),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
