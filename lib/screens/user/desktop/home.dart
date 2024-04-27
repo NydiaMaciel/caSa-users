@@ -6,8 +6,8 @@ import 'package:casa/screens/user/rp/timelinetileClass.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
-  Jugadores usuario;
-  Home({super.key,required this.usuario});
+  final Jugadores usuario;
+  const Home({super.key,required this.usuario});
 
   @override
   State<Home> createState() => _HomeState();
@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
     double done = getDone();
     return Scaffold(
       body: Container(
-        //color: Colors.grey,
+        color: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -140,7 +140,7 @@ class _HomeState extends State<Home> {
                 //bott
                 Container(
                   padding: EdgeInsets.all(7),
-                  height: MediaQuery.of(context).size.height*0.44,
+                  height: MediaQuery.of(context).size.height*0.47,
                   width: MediaQuery.of(context).size.width*0.2,
                   color:Color.fromARGB(100, 131, 117, 24),
                   child: Column(

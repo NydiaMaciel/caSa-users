@@ -19,6 +19,28 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: appBarcolor,
+        dialogBackgroundColor: color25,
+        focusColor: color6,
+        buttonTheme: ButtonThemeData(
+          buttonColor: color6,
+          splashColor: appBarcolor4,
+          focusColor: color6,
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          labelStyle: TextStyle(color: iconColorForm),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              width: 1.5,
+              style: BorderStyle.solid,
+              color: appBarcolor4
+            ),
+          ),
+        ),
+        progressIndicatorTheme: ProgressIndicatorThemeData(
+          color: fucsia,
+          circularTrackColor: color6,
+          linearMinHeight: 20.0,
+        ),
       ),
       home: Login(),
     );

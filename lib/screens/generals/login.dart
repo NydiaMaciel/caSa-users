@@ -23,7 +23,7 @@ class _LoginState extends State <Login>{
   Widget build (BuildContext context){
     double sizeicon = 17;
     bool responsive_ = MediaQuery.of(context).size.width<1100;
-    return Scaffold(
+    Widget scaff = Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -84,10 +84,14 @@ class _LoginState extends State <Login>{
                       SizedBox( height: 10,),
                       TextFormField(
                         controller: user,
+                        cursorColor: color1,
+                        cursorHeight: 23,
+                        cursorWidth: 1.0,
                         decoration: InputDecoration(
                           labelText: 'Usuario',
                           enabled: true,
                           suffixIcon: Icon(iconUsuario, size:sizeicon,color: iconColorForm,),
+                          //
                         ),
                         validator: (value) {
                           if(value!.length == 0){
@@ -101,6 +105,9 @@ class _LoginState extends State <Login>{
                       TextFormField(
                         obscureText: false,
                         controller: pswd,
+                        cursorColor: color1,
+                        cursorHeight: 23,
+                        cursorWidth: 1.0,
                         decoration: InputDecoration(
                           labelText: 'Contraseña',
                           enabled: true,
@@ -210,6 +217,7 @@ class _LoginState extends State <Login>{
         ),
       ),
     );
+    return scaff;
   }
 
   void showAlertLogin(){

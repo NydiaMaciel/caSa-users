@@ -5,9 +5,9 @@ import 'package:casa/services/sessions.dart';
 import 'package:flutter/material.dart';
 
 class SetingsLayout extends StatelessWidget {
-  Jugadores usuario;
-  Sesion dataSesion;
-  SetingsLayout({super.key,required this.usuario, required this.dataSesion});
+  final Jugadores usuario;
+  final Sesion dataSesion;
+  const SetingsLayout({super.key,required this.usuario, required this.dataSesion});
 
   @override
   Widget build(BuildContext context) {

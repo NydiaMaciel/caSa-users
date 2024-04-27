@@ -79,6 +79,9 @@ class _RegState extends State <Register>{
                             width: responsive? MediaQuery.of(context).size.width*0.40:MediaQuery.of(context).size.width/3*0.50,//MediaQuery.of(context).size.width/3*0.50,
                             child: TextFormField(
                               controller: user_ctrlr,
+                              cursorColor: color1,
+                              cursorHeight: 23,
+                              cursorWidth: 1.0,
                               decoration: InputDecoration(
                                   labelText: 'Usuario',
                                   suffixIconConstraints: BoxConstraints(minHeight: 20,minWidth: 20),
@@ -97,6 +100,9 @@ class _RegState extends State <Register>{
                             height: errorPhn?80:null,
                             child: TextFormField(
                               controller: ntel_ctrlr,
+                              cursorColor: color1,
+                              cursorHeight: 23,
+                              cursorWidth: 1.0,
                               keyboardType: TextInputType.phone,
                               decoration: InputDecoration(
                                 
@@ -117,6 +123,9 @@ class _RegState extends State <Register>{
                       ),
                       TextFormField(
                         controller: mail_ctrlr,
+                        cursorColor: color1,
+                        cursorHeight: 23,
+                        cursorWidth: 1.0,
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                           labelText: 'Correo Electrónico',
@@ -137,6 +146,9 @@ class _RegState extends State <Register>{
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           TextFormField(
+                            cursorColor: color1,
+                            cursorHeight: 23,
+                            cursorWidth: 1.0,
                             obscureText: pwdhide1,
                             controller: pwd1_ctrlr,
                             decoration: InputDecoration(
@@ -159,6 +171,9 @@ class _RegState extends State <Register>{
                           TextFormField(
                             obscureText: pwdhide2,
                             controller: pwd2_ctrlr,
+                            cursorColor: color1,
+                            cursorHeight: 23,
+                            cursorWidth: 1.0,
                             decoration: InputDecoration(
                               labelText: 'Confirme contraseña',
                               errorText: errorPwd? 'Las contraseñas no coinciden': null,
@@ -188,6 +203,9 @@ class _RegState extends State <Register>{
                             child: TextFormField(
                               obscureText: pwdhide1,
                               controller: pwd1_ctrlr,
+                              cursorColor: color1,
+                              cursorHeight: 23,
+                              cursorWidth: 1.0,
                               decoration: InputDecoration(
                                 labelText: 'Contraseña',
                                 suffixIcon: IconButton(
@@ -213,6 +231,9 @@ class _RegState extends State <Register>{
                             child: TextFormField(
                               obscureText: pwdhide2,
                               controller: pwd2_ctrlr,
+                              cursorColor: color1,
+                              cursorHeight: 23,
+                              cursorWidth: 1.0,
                               decoration: InputDecoration(
                                 labelText: 'Confirme contraseña',
                                 errorText: errorPwd? 'Las contraseñas no coinciden': null,
@@ -264,6 +285,25 @@ class _RegState extends State <Register>{
                   fontSize: 20,
                   fontFamily: 'Wenstern',
                   fontWeight: FontWeight.w700
+                  ),
+                ),
+              ),
+              SizedBox(height: 20,),
+              TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.grey[700],
+                  padding: EdgeInsets.symmetric(vertical:responsive?5.0:10.0, horizontal:30.0),
+                ),
+                onPressed: ()async{
+                  setState(() {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Login()));
+                  });
+                },  
+                child: const Text('Cancelar', style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 17,
+                  fontFamily: 'Wenstern',
+                  fontWeight: FontWeight.w500
                   ),
                 ),
               ),

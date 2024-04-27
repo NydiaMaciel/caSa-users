@@ -61,6 +61,9 @@ class _RecupState extends State <Recup>{
                       ),),
                       TextFormField(
                         controller: ctrl_user,
+                        cursorColor: color1,
+                        cursorHeight: 23,
+                        cursorWidth: 1.0,
                         decoration: InputDecoration(
                           labelText: 'Usuario',
                           suffixIcon: Icon(iconUsuario, size:responsive_?13:sizeicon,color: iconColorForm,),
@@ -74,6 +77,9 @@ class _RecupState extends State <Recup>{
                       ),
                       TextFormField(
                         controller: ctrl_email,
+                        cursorColor: color1,
+                        cursorHeight: 23,
+                        cursorWidth: 1.0,
                         decoration: InputDecoration(
                           labelText: 'Correo electrónico',
                           suffixIcon: Icon(iconArroba, size:responsive_?13:sizeicon,color: iconColorForm,),
